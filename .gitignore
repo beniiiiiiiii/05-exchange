@@ -2,3 +2,8 @@
 05 - Exchange/Exchange.Solution/.vs
 05 - Exchange/Exchange.Solution/Solution.Domain/obj
 05 - Exchange/Exchange.Solution/Solution.Shared/obj
+05 - Exchange/Exchange.Solution/Solution.API/obj
+05 - Exchange/Exchange.Solution/Solution.Validators/obj
+05 - Exchange/Exchange.Solution/Solution.Services/obj
+05 - Exchange/Exchange.Solution/Solution.WebAPI/obj
+05 - Exchange/Exchange.Solution/Solution.WebAPI/bin

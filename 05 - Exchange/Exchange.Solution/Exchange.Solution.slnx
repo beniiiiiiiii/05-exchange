@@ -1,3 +1,6 @@
 <Solution>
-  <Project Path="Exchange.Solution/Exchange.Solution.csproj" />
+  <Project Path="Exchange.Solution/Solution.DesktopApp.csproj" />
+  <Project Path="Solution.Services/Solution.Services.csproj" Id="75d75c6d-ee9c-44d4-90b7-083df2415ffd" />
+  <Project Path="Solution.Shared/Solution.Shared.csproj" />
+  <Project Path="Solution.Validators/Solution.Validators.csproj" Id="c3090dbd-aaa9-43e4-8be9-921397b3e91e" />
 </Solution>
