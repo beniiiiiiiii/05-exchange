@@ -1,0 +1,9 @@
+﻿global using Microsoft.AspNetCore.Identity;
+global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore;
+global using Solution.Domain.Database.Entities;
+global using Solution.Domain.Database.Builders;
+global using System.Reflection;
+global using Solution.Domain;
+global using System.ComponentModel.DataAnnotations;
+global using System.Text.Json.Serialization;
