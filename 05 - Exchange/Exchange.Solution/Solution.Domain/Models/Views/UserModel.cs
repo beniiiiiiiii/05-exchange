@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Solution.Domain.Models.Views;
 
-namespace Solution.Domain.Models.Views;
-
+[Table("User")]
 public class UserModel
 {
     [Required]

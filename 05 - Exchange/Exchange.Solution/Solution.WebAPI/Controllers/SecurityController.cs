@@ -1,4 +1,4 @@
-﻿using Swashbuckle.AspNetCore.Annotations;
+﻿using Solution.Shared.Extensions;
 
 namespace Solution.WebAPI.Controllers;
 
@@ -8,7 +8,7 @@ public class SecurityController(ISecurityService securityService) : ControllerBa
 {
     [HttpPost]
     [Route("api/security/register")]
-    [ProducesResponseType(type : typeof(Success), statusCode : 200 )]
+    [ProducesResponseType(type: typeof(Success), statusCode: 200)]
     [EndpointDescription("This endpoint will register a new user into the database")]
     public async Task<IActionResult> RegisterAsync([FromBody][Required] RegisterRequestModel model)
     {
@@ -21,7 +21,7 @@ public class SecurityController(ISecurityService securityService) : ControllerBa
 
     [HttpPost]
     [Route("api/security/login")]
-    [ProducesResponseType(type: typeof(TokenResponseModel), statusCode: 200) ]
+    [ProducesResponseType(type: typeof(TokenResponseModel), statusCode: 200)]
     [EndpointDescription("This endpoint will log you into a user in the database provided you have the correct email and password")]
     public async Task<IActionResult> LoginAsync([FromBody][Required] LoginRequestModel model)
     {

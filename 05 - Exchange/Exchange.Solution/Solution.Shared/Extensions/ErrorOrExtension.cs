@@ -1,20 +1,19 @@
-﻿using Microsoft.AspNetCore.Http;
-
+﻿
 namespace Solution.Shared.Extensions;
 
 public static class ErrorOrExtension
 {
-    extension (List<Error> errors)
+    extension(List<Error> errors)
     {
         public IActionResult ToProblemResult()
         {
-            if(errors.All(e => e.Type == ErrorType.Validation))
+            if (errors.All(e => e.Type == ErrorType.Validation))
             {
                 var modelStateDictionary = new Dictionary<string, string[]>();
 
-                foreach(var error in errors)
+                foreach (var error in errors)
                 {
-                    foreach(var kv in error.Metadata)
+                    foreach (var kv in error.Metadata)
                     {
                         modelStateDictionary.Add(kv.Key, new[] { kv.Value.ToString()! });
                     }
@@ -23,14 +22,14 @@ public static class ErrorOrExtension
                 return new BadRequestObjectResult(modelStateDictionary);
             }
 
-            if(errors.Any(e => e.Type == ErrorType.Unexpected))
+            if (errors.Any(e => e.Type == ErrorType.Unexpected))
             {
-                return new BadRequestObjectResult(errors.Select(x => x.Description))
+                return new BadRequestObjectResult(errors.Select(x => x.Description));
             }
 
-            if(errors.Any(e => e.Type == ErrorType.Failure))
+            if (errors.Any(e => e.Type == ErrorType.Failure))
             {
-                return new BadRequestObjectResult(errors.Select(x => x.Description))
+                return new BadRequestObjectResult(errors.Select(x => x.Description));
             }
 
             var firstError = errors.First();
@@ -44,7 +43,7 @@ public static class ErrorOrExtension
                 _ => StatusCodes.Status500InternalServerError
             };
 
-            return new BadRequestObjectResult(errors.Select(x => x.Description)) { StatusCode = statusCode}
+            return new BadRequestObjectResult(errors.Select(x => x.Description)) { StatusCode = statusCode }
         }
     }
 }

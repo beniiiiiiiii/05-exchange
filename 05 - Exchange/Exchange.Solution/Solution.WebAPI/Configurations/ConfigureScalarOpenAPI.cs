@@ -1,5 +1,4 @@
-﻿using Microsoft.OpenApi;
-using Scalar.AspNetCore;
+﻿using Scalar.AspNetCore;
 using Solution.WebAPI.Transformers;
 
 namespace Solution.WebAPI.Configurations;

@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace Exchange.Solution
+﻿namespace Exchange.Solution
 {
     public partial class App : Application
     {

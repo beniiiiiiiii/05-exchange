@@ -1,6 +1,4 @@
-﻿using Swashbuckle.AspNetCore.Annotations;
-
-namespace Solution.WebAPI.Controllers;
+﻿namespace Solution.WebAPI.Controllers;
 
 [ApiController]
 [ProducesResponseType(statusCode: 400, type: typeof(BadRequestObjectResult))]

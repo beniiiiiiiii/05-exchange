@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Solution.Domain.Database.Builders;
+﻿namespace Solution.Domain.Database.Builders;
 
 internal static class UserEntityModelBuilder
 {
@@ -14,7 +10,7 @@ internal static class UserEntityModelBuilder
 
             entity.HasIndex(e => e.Id)
                   .IsUnique();
-            
+
             entity.Property(e => e.FullName)
                 .HasColumnName("FullName")
                 .IsRequired()

@@ -4,7 +4,7 @@ public sealed class ApplicationDbContext : IdentityDbContext<UserEntity, Identit
 {
     public override DbSet<UserEntity> Users { get; set; }
 
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options) { }
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

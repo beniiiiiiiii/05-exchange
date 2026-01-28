@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-namespace Solution.WebAPI.Configurations;
+﻿namespace Solution.WebAPI.Configurations;
 
 public static class ConfigureRedocOpenAPI
 {

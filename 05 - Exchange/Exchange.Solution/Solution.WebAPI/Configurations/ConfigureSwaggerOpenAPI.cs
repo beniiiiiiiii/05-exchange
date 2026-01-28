@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-namespace Solution.WebAPI.Configurations;
+﻿namespace Solution.WebAPI.Configurations;
 
 //https://learn.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-8.0&tabs=visual-studio
 
@@ -14,9 +12,9 @@ public static class ConfigureOpenAPI
             {
                 options.OpenApiVersion = OpenApiSpecVersion.OpenApi3_1;
             });
-            
+
             builder.Services.AddEndpointsApiExplorer();
-            
+
             builder.Services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
@@ -60,12 +58,12 @@ public static class ConfigureOpenAPI
         public IApplicationBuilder UseSwashbuckleOpenAPI()
         {
             app.MapOpenApi();
-            
+
             app.UseSwagger(options =>
             {
                 options.OpenApiVersion = OpenApiSpecVersion.OpenApi3_1;
             });
-            
+
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");

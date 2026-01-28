@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Solution.Domain.Models.Responses;
+﻿namespace Solution.Domain.Models.Responses;
 
 public class TokenResponseModel
 {

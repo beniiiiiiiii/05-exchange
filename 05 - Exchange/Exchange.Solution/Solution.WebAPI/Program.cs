@@ -1,5 +1,3 @@
-using Solution.WebAPI.Configurations;
-
 var builder = WebApplication.CreateBuilder(args);
 
 
