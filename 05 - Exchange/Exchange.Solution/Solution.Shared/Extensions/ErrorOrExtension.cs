@@ -1,10 +1,9 @@
-﻿
-namespace Solution.Shared.Extensions;
+﻿namespace ErrorOr;
 
 public static class ErrorOrExtension
 {
-    extension(List<Error> errors)
-    {
+    extension(List<Error> errors) { 
+    
         public IActionResult ToProblemResult()
         {
             if (errors.All(e => e.Type == ErrorType.Validation))
@@ -43,7 +42,8 @@ public static class ErrorOrExtension
                 _ => StatusCodes.Status500InternalServerError
             };
 
-            return new BadRequestObjectResult(errors.Select(x => x.Description)) { StatusCode = statusCode }
+        return new BadRequestObjectResult(errors.Select(x => x.Description)) { StatusCode = statusCode };
         }
     }
-}
+}    
+

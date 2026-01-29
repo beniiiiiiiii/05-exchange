@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -27,7 +27,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Solution.Domain\Solution.Domain.csproj" />
     <ProjectReference Include="..\Solution.Services\Solution.Services.csproj" />
-    <ProjectReference Include="..\Solution.Shared\Solution.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
