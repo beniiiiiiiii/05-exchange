@@ -1,4 +1,6 @@
-﻿namespace Solution.Core.Interfaces.Services;
+﻿using ErrorOr;
+
+namespace Solution.Core.Interfaces.Services;
 
 public interface IStatisticsService
 {
