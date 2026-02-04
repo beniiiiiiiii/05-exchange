@@ -1,4 +1,4 @@
-﻿namespace Solution.Domain.Models.Settings;
+﻿namespace Solution.Core.Models.Settings;
 
 public class JWTSettingsModel
 {

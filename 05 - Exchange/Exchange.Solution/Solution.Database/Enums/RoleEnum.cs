@@ -1,4 +1,4 @@
-﻿namespace Solution.Domain.Enums;
+﻿namespace Solution.Database.Enums;
 
 public enum UserRole : byte
 {

@@ -1,7 +1,7 @@
 <Solution>
   <Project Path="Exchange.Solution/Solution.DesktopApp.csproj" />
+  <Project Path="Solution.Core/Solution.Core.csproj" />
   <Project Path="Solution.Database/Solution.Database.csproj" Id="327f78e0-f675-46ef-9698-5168455eb289" />
-  <Project Path="Solution.Domain/Solution.Core.csproj" />
   <Project Path="Solution.Services/Solution.Services.csproj" Id="75d75c6d-ee9c-44d4-90b7-083df2415ffd" />
   <Project Path="Solution.Validators/Solution.Validators.csproj" Id="c3090dbd-aaa9-43e4-8be9-921397b3e91e" />
   <Project Path="Solution.WebAPI/Solution.WebAPI.csproj" />

@@ -1,4 +1,4 @@
-﻿namespace Solution.Domain.Models.Views;
+﻿namespace Solution.Core.Models.Views;
 
 [Table("User")]
 public class UserModel

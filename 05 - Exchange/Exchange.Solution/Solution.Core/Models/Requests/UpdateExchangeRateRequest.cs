@@ -1,4 +1,4 @@
-﻿namespace Solution.Core.Models.Request;
+﻿namespace Solution.Core.Models.Requests;
 
 public class UpdateExchangeRateRequest
 {

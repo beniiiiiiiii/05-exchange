@@ -1,4 +1,4 @@
-﻿namespace Solution.Domain.Database.Entities;
+﻿namespace Solution.Database.Entities;
 
 public class UserEntity : IdentityUser<Guid>
 {

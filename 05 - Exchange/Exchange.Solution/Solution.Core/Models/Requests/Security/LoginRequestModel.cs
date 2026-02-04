@@ -1,4 +1,4 @@
-﻿namespace Solution.Domain.Models.Requests.Security;
+﻿namespace Solution.Core.Models.Requests.Security;
 
 public class LoginRequestModel
 {

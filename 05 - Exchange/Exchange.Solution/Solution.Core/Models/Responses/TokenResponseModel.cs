@@ -1,4 +1,4 @@
-﻿namespace Solution.Domain.Models.Responses;
+﻿namespace Solution.Core.Models.Responses;
 
 public class TokenResponseModel
 {
