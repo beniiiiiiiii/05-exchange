@@ -1,6 +1,4 @@
-﻿
-
-namespace Solution.Database.Entities;
+﻿namespace Solution.Database.Entities;
 
 [Table("ExchangeRate")]
 public class ExchangeRateEntity
