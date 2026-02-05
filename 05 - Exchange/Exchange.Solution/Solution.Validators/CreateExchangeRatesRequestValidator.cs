@@ -1,5 +1,4 @@
-﻿using FluentValidation;
-using Solution.Core.Models.Requests;
+﻿
 
 namespace Solution.Validators;
 
