@@ -4,3 +4,4 @@ global using System.ComponentModel.DataAnnotations.Schema;
 global using Solution.Database.Enums;
 global using ErrorOr;
 global using Solution.Core.Models.Requests;
+global using Solution.Core.Models.Responses;
