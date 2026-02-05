@@ -3,7 +3,7 @@
 public class UserResponseModel
 {
     [JsonPropertyName("id")]
-    public int Id { get; set; }
+    public string Id { get; set; }
 
     [Required]
     [JsonPropertyName("name")]
