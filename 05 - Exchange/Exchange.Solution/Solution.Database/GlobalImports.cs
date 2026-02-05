@@ -6,3 +6,4 @@ global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.AspNetCore.Identity;
 global using Solution.Database.Entities;
+global using Solution.Database.Builders;

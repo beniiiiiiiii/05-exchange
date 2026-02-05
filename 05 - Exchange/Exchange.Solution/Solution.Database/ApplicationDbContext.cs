@@ -1,5 +1,4 @@
-﻿
-namespace Solution.Database;
+﻿namespace Solution.Database;
 
 public sealed class ApplicationDbContext : IdentityDbContext<UserEntity, IdentityRole<Guid>, Guid>
 {
