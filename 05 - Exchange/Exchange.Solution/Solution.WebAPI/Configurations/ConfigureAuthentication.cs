@@ -1,5 +1,7 @@
 ﻿
 
+
+
 namespace Solution.WebAPI.Configurations;
 
 public static class ConfigureAuthentication

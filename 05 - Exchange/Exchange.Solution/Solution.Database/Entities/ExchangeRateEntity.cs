@@ -23,7 +23,7 @@ public class ExchangeRateEntity
     [Required]
     public DateTime CreatedAt { get; set; }
 
-    public DateTime? UpdatedAt { get; set; }
+    public DateTime? ModifiedAt { get; set; }
 
     [Required]
     public string CreatedByUserId { get; set; }
