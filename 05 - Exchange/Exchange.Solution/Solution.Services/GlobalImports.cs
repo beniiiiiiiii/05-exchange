@@ -6,3 +6,8 @@ global using Microsoft.Extensions.Logging;
 global using Solution.Common.Constants.Errors;
 global using Solution.Core.Models.Response;
 global using Solution.Database;
+global using Solution.Core.Models.Requests;
+global using Solution.Core.Models.Responses;
+global using Solution.Database.Entities;
+global using Solution.Database.Enums;
+global using System.Security.Claims;
