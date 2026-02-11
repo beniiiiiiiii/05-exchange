@@ -1,6 +1,4 @@
-﻿
-
-namespace Solution.Core.Interfaces.Services;
+﻿namespace Solution.Core.Interfaces.Services;
 
 public interface IUserManagementService
 {

@@ -1,6 +1,4 @@
-﻿using Solution.Domain.Enums;
-
-namespace Solution.Database.Entities;
+﻿namespace Solution.Database.Entities;
 
 [Table("Transaction")]
 public class TransactionEntity
