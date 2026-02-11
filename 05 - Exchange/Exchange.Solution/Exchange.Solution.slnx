@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="Exchange.Solution/Solution.DesktopApp.csproj" />
+  <Project Path="Solution.Common/Solution.Common.csproj" Id="895f3303-b912-428c-b96e-0959b28823c5" />
   <Project Path="Solution.Core/Solution.Core.csproj" />
   <Project Path="Solution.Database/Solution.Database.csproj" Id="327f78e0-f675-46ef-9698-5168455eb289" />
   <Project Path="Solution.Services/Solution.Services.csproj" Id="75d75c6d-ee9c-44d4-90b7-083df2415ffd" />
