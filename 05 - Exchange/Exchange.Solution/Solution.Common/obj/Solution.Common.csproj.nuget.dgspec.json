@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\b1csoben\\05-exchange\\05 - Exchange\\Exchange.Solution\\Solution.Common\\Solution.Common.csproj": {}
+    "C:\\Users\\b1duzale\\Desktop\\05-exchange\\05 - Exchange\\Exchange.Solution\\Solution.Common\\Solution.Common.csproj": {}
   },
   "projects": {
-    "C:\\Users\\b1csoben\\05-exchange\\05 - Exchange\\Exchange.Solution\\Solution.Common\\Solution.Common.csproj": {
+    "C:\\Users\\b1duzale\\Desktop\\05-exchange\\05 - Exchange\\Exchange.Solution\\Solution.Common\\Solution.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\b1csoben\\05-exchange\\05 - Exchange\\Exchange.Solution\\Solution.Common\\Solution.Common.csproj",
+        "projectUniqueName": "C:\\Users\\b1duzale\\Desktop\\05-exchange\\05 - Exchange\\Exchange.Solution\\Solution.Common\\Solution.Common.csproj",
         "projectName": "Solution.Common",
-        "projectPath": "C:\\Users\\b1csoben\\05-exchange\\05 - Exchange\\Exchange.Solution\\Solution.Common\\Solution.Common.csproj",
-        "packagesPath": "C:\\Users\\b1csoben\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\b1csoben\\05-exchange\\05 - Exchange\\Exchange.Solution\\Solution.Common\\obj\\",
+        "projectPath": "C:\\Users\\b1duzale\\Desktop\\05-exchange\\05 - Exchange\\Exchange.Solution\\Solution.Common\\Solution.Common.csproj",
+        "packagesPath": "C:\\Users\\b1duzale\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\b1duzale\\Desktop\\05-exchange\\05 - Exchange\\Exchange.Solution\\Solution.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\b1csoben\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\b1duzale\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -126,7 +126,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
