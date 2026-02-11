@@ -5,12 +5,14 @@
 A Currency Exchange REST API built with ASP.NET Core 10, following the reference architecture patterns from the `__full example__` folder. This API enables authenticated users to manage daily exchange rates and process currency exchange transactions.
 
 **Supported Currencies:**
+
 - USD (United States Dollar)
 - GBP (British Pound Sterling)
 - CHF (Swiss Franc)
 - HUF (Hungarian Forint) - base currency for all exchanges
 
 **Technology Stack:**
+
 - ASP.NET Core 10 REST API
 - Entity Framework Core 9.0.8
 - ASP.NET Core Identity
@@ -43,6 +45,7 @@ Solution.sln
 ### 1.1 Enums
 
 **Create: `/Solution.Database/Enums/Currency.cs`**
+
 ```csharp
 namespace Solution.Database.Enums;
 
@@ -56,6 +59,7 @@ public enum Currency : byte
 ```
 
 **Create: `/Solution.Database/Enums/TransactionType.cs`**
+
 ```csharp
 namespace Solution.Database.Enums;
 
@@ -67,6 +71,7 @@ public enum TransactionType : byte
 ```
 
 **Create: `/Solution.Database/Enums/CustomerIdType.cs`**
+
 ```csharp
 namespace Solution.Database.Enums;
 
@@ -81,6 +86,7 @@ public enum CustomerIdType : byte
 ### 1.2 Entities
 
 **Create: `/Solution.Database/Entities/ExchangeRateEntity.cs`**
+
 ```csharp
 namespace Solution.Database.Entities;
 
@@ -122,6 +128,7 @@ public class ExchangeRateEntity
 ```
 
 **Create: `/Solution.Database/Entities/TransactionEntity.cs`**
+
 ```csharp
 namespace Solution.Database.Entities;
 
@@ -180,12 +187,14 @@ public class TransactionEntity
 **Modify: `/Solution.Database/AppDbContext.cs`**
 
 Add DbSets:
+
 ```csharp
 public DbSet<ExchangeRateEntity> ExchangeRates { get; set; }
 public DbSet<TransactionEntity> Transactions { get; set; }
 ```
 
 Add to `OnModelCreating`:
+
 ```csharp
 // ExchangeRate configuration
 builder.Entity<ExchangeRateEntity>(b =>
@@ -233,6 +242,7 @@ builder.Entity<TransactionEntity>(b =>
 ### 1.4 Update GlobalImports.cs
 
 **Modify: `/Solution.Database/GlobalImports.cs`**
+
 ```csharp
 global using Solution.Database.Enums;
 ```
@@ -244,6 +254,7 @@ global using Solution.Database.Enums;
 ### 2.1 Request DTOs
 
 **Create: `/Solution.Core/Models/Request/CreateExchangeRatesRequest.cs`**
+
 ```csharp
 namespace Solution.Core.Models.Request;
 
@@ -273,6 +284,7 @@ public class CreateExchangeRatesRequest
 ```
 
 **Create: `/Solution.Core/Models/Request/UpdateExchangeRateRequest.cs`**
+
 ```csharp
 namespace Solution.Core.Models.Request;
 
@@ -290,6 +302,7 @@ public class UpdateExchangeRateRequest
 ```
 
 **Create: `/Solution.Core/Models/Request/CreateTransactionRequest.cs`**
+
 ```csharp
 namespace Solution.Core.Models.Request;
 
@@ -313,6 +326,7 @@ public class CreateTransactionRequest
 ```
 
 **Create: `/Solution.Core/Models/Request/CreateUserRequest.cs`**
+
 ```csharp
 namespace Solution.Core.Models.Request;
 
@@ -334,6 +348,7 @@ public class CreateUserRequest
 ```
 
 **Create: `/Solution.Core/Models/Request/UpdateUserRequest.cs`**
+
 ```csharp
 namespace Solution.Core.Models.Request;
 
@@ -351,6 +366,7 @@ public class UpdateUserRequest
 ```
 
 **Create: `/Solution.Core/Models/Request/ResetPasswordRequest.cs`**
+
 ```csharp
 namespace Solution.Core.Models.Request;
 
@@ -365,6 +381,7 @@ public class ResetPasswordRequest
 ### 2.2 Response DTOs
 
 **Create: `/Solution.Core/Models/Response/ExchangeRateResponse.cs`**
+
 ```csharp
 namespace Solution.Core.Models.Response;
 
@@ -394,6 +411,7 @@ public class ExchangeRateResponse
 ```
 
 **Create: `/Solution.Core/Models/Response/ExchangeRatesResponse.cs`**
+
 ```csharp
 namespace Solution.Core.Models.Response;
 
@@ -408,6 +426,7 @@ public class ExchangeRatesResponse
 ```
 
 **Create: `/Solution.Core/Models/Response/TransactionResponse.cs`**
+
 ```csharp
 namespace Solution.Core.Models.Response;
 
@@ -449,6 +468,7 @@ public class TransactionResponse
 ```
 
 **Create: `/Solution.Core/Models/Response/TransactionListResponse.cs`**
+
 ```csharp
 namespace Solution.Core.Models.Response;
 
@@ -463,6 +483,7 @@ public class TransactionListResponse
 ```
 
 **Create: `/Solution.Core/Models/Response/StatisticsResponses.cs`**
+
 ```csharp
 namespace Solution.Core.Models.Response;
 
@@ -558,6 +579,7 @@ public class CurrencySummary
 ```
 
 **Create: `/Solution.Core/Models/Response/UserListResponse.cs`**
+
 ```csharp
 namespace Solution.Core.Models.Response;
 
@@ -574,6 +596,7 @@ public class UserListResponse
 ### 2.3 Service Interfaces
 
 **Create: `/Solution.Core/Interfaces/Services/IExchangeRateService.cs`**
+
 ```csharp
 namespace Solution.Core.Interfaces.Services;
 
@@ -589,6 +612,7 @@ public interface IExchangeRateService
 ```
 
 **Create: `/Solution.Core/Interfaces/Services/ITransactionService.cs`**
+
 ```csharp
 namespace Solution.Core.Interfaces.Services;
 
@@ -602,6 +626,7 @@ public interface ITransactionService
 ```
 
 **Create: `/Solution.Core/Interfaces/Services/IStatisticsService.cs`**
+
 ```csharp
 namespace Solution.Core.Interfaces.Services;
 
@@ -614,6 +639,7 @@ public interface IStatisticsService
 ```
 
 **Create: `/Solution.Core/Interfaces/Services/IUserManagementService.cs`**
+
 ```csharp
 namespace Solution.Core.Interfaces.Services;
 
@@ -631,6 +657,7 @@ public interface IUserManagementService
 ### 2.4 Update GlobalImports.cs
 
 **Modify: `/Solution.Core/GlobalImports.cs`**
+
 ```csharp
 global using Solution.Database.Enums;
 ```
@@ -642,6 +669,7 @@ global using Solution.Database.Enums;
 ### 3.1 Request Validators
 
 **Create: `/Solution.Validators/RequestValidators/CreateExchangeRatesRequestValidator.cs`**
+
 ```csharp
 namespace Solution.Validators.RequestValidators;
 
@@ -683,6 +711,7 @@ public class CreateExchangeRatesRequestValidator : AbstractValidator<CreateExcha
 ```
 
 **Create: `/Solution.Validators/RequestValidators/UpdateExchangeRateRequestValidator.cs`**
+
 ```csharp
 namespace Solution.Validators.RequestValidators;
 
@@ -705,6 +734,7 @@ public class UpdateExchangeRateRequestValidator : AbstractValidator<UpdateExchan
 ```
 
 **Create: `/Solution.Validators/RequestValidators/CreateTransactionRequestValidator.cs`**
+
 ```csharp
 namespace Solution.Validators.RequestValidators;
 
@@ -734,6 +764,7 @@ public class CreateTransactionRequestValidator : AbstractValidator<CreateTransac
 ```
 
 **Create: `/Solution.Validators/RequestValidators/CreateUserRequestValidator.cs`**
+
 ```csharp
 namespace Solution.Validators.RequestValidators;
 
@@ -760,6 +791,7 @@ public class CreateUserRequestValidator : AbstractValidator<CreateUserRequest>
 ```
 
 **Create: `/Solution.Validators/RequestValidators/UpdateUserRequestValidator.cs`**
+
 ```csharp
 namespace Solution.Validators.RequestValidators;
 
@@ -782,6 +814,7 @@ public class UpdateUserRequestValidator : AbstractValidator<UpdateUserRequest>
 ```
 
 **Create: `/Solution.Validators/RequestValidators/ResetPasswordRequestValidator.cs`**
+
 ```csharp
 namespace Solution.Validators.RequestValidators;
 
@@ -799,6 +832,7 @@ public class ResetPasswordRequestValidator : AbstractValidator<ResetPasswordRequ
 ### 3.2 Update GlobalImports.cs
 
 **Modify: `/Solution.Validators/GlobalImports.cs`**
+
 ```csharp
 global using Solution.Database.Enums;
 ```
@@ -808,6 +842,7 @@ global using Solution.Database.Enums;
 ## Phase 4: Error Constants (Solution.Common)
 
 **Create: `/Solution.Common/Constants/Errors/Errors.ExchangeRate.cs`**
+
 ```csharp
 namespace Solution.Common.Constants;
 
@@ -844,6 +879,7 @@ public static partial class Errors
 ```
 
 **Create: `/Solution.Common/Constants/Errors/Errors.Transaction.cs`**
+
 ```csharp
 namespace Solution.Common.Constants;
 
@@ -870,6 +906,7 @@ public static partial class Errors
 ```
 
 **Update: `/Solution.Common/Constants/Errors/Errors.User.cs`**
+
 ```csharp
 namespace Solution.Common.Constants;
 
@@ -922,6 +959,7 @@ public static partial class Errors
 ### 5.1 ExchangeRateService
 
 **Create: `/Solution.Services/Services/ExchangeRateService.cs`**
+
 ```csharp
 namespace Solution.Services.Services;
 
@@ -1082,6 +1120,7 @@ public class ExchangeRateService : IExchangeRateService
 ### 5.2 TransactionService
 
 **Create: `/Solution.Services/Services/TransactionService.cs`**
+
 ```csharp
 namespace Solution.Services.Services;
 
@@ -1230,6 +1269,7 @@ public class TransactionService : ITransactionService
 ### 5.3 StatisticsService
 
 **Create: `/Solution.Services/Services/StatisticsService.cs`**
+
 ```csharp
 namespace Solution.Services.Services;
 
@@ -1340,6 +1380,7 @@ public class StatisticsService : IStatisticsService
 ### 5.4 UserManagementService
 
 **Create: `/Solution.Services/Services/UserManagementService.cs`**
+
 ```csharp
 namespace Solution.Services.Services;
 
@@ -1494,6 +1535,7 @@ public class UserManagementService : IUserManagementService
 ### 5.5 Update GlobalImports.cs
 
 **Modify: `/Solution.Services/GlobalImports.cs`**
+
 ```csharp
 global using Microsoft.AspNetCore.Http;
 global using Microsoft.EntityFrameworkCore;
@@ -1507,6 +1549,7 @@ global using System.Security.Claims;
 ### 6.1 Controllers
 
 **Create: `/Solution.Api/Controllers/ExchangeRateController.cs`**
+
 ```csharp
 namespace Solution.Api.Controllers;
 
@@ -1586,6 +1629,7 @@ public class ExchangeRateController(IExchangeRateService exchangeRateService) : 
 ```
 
 **Create: `/Solution.Api/Controllers/TransactionController.cs`**
+
 ```csharp
 namespace Solution.Api.Controllers;
 
@@ -1644,6 +1688,7 @@ public class TransactionController(ITransactionService transactionService) : Bas
 ```
 
 **Create: `/Solution.Api/Controllers/StatisticsController.cs`**
+
 ```csharp
 namespace Solution.Api.Controllers;
 
@@ -1690,6 +1735,7 @@ public class StatisticsController(IStatisticsService statisticsService) : BaseCo
 ```
 
 **Create: `/Solution.Api/Controllers/UserController.cs`**
+
 ```csharp
 namespace Solution.Api.Controllers;
 
@@ -1776,6 +1822,7 @@ public class UserController(IUserManagementService userManagementService) : Base
 **Modify: `/Solution.Api/ConfigurationExtensions/DependencyInjectionConfiguration.cs`**
 
 Add to `ConfigureDI` method:
+
 ```csharp
 builder.Services.AddTransient<IExchangeRateService, ExchangeRateService>();
 builder.Services.AddTransient<ITransactionService, TransactionService>();
@@ -1786,6 +1833,7 @@ builder.Services.AddTransient<IUserManagementService, UserManagementService>();
 ### 6.3 Update GlobalImports.cs
 
 **Modify: `/Solution.Api/GlobalImports.cs`**
+
 ```csharp
 global using Solution.Database.Enums;
 ```
@@ -1808,28 +1856,28 @@ dotnet ef database update --project Solution.Database --startup-project Solution
 
 ## API Endpoint Summary
 
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| POST | /api/account/login | User login | Public |
-| GET | /api/exchangerate | List rates with optional date filter | Authenticated |
-| GET | /api/exchangerate/today | Get today's rates | Authenticated |
-| GET | /api/exchangerate/{date} | Get rates for specific date | Authenticated |
-| GET | /api/exchangerate/exists/{date} | Check if rates exist | Authenticated |
-| POST | /api/exchangerate | Create daily rates (all 3 currencies) | Authenticated |
-| PUT | /api/exchangerate | Update single rate for today | Authenticated |
-| POST | /api/transaction/buy | Create buy transaction | Authenticated |
-| POST | /api/transaction/sell | Create sell transaction | Authenticated |
-| GET | /api/transaction | List transactions with filters | Authenticated |
-| GET | /api/transaction/{id} | Get transaction by ID | Authenticated |
-| GET | /api/statistics/rates | Rate trends for charts | Authenticated |
-| GET | /api/statistics/transactions | Transaction statistics | Authenticated |
-| GET | /api/statistics/summary | Dashboard summary | Authenticated |
-| GET | /api/user | List all users | Admin only |
-| GET | /api/user/{id} | Get user by ID | Admin only |
-| POST | /api/user | Create new user | Admin only |
-| PUT | /api/user/{id} | Update user | Admin only |
-| DELETE | /api/user/{id} | Delete user (not self) | Admin only |
-| POST | /api/user/{id}/reset-password | Reset user password | Admin only |
+| Method | Endpoint                        | Description                           | Auth          |
+| ------ | ------------------------------- | ------------------------------------- | ------------- |
+| POST   | /api/account/login              | User login                            | Public        |
+| GET    | /api/exchangerate               | List rates with optional date filter  | Authenticated |
+| GET    | /api/exchangerate/today         | Get today's rates                     | Authenticated |
+| GET    | /api/exchangerate/{date}        | Get rates for specific date           | Authenticated |
+| GET    | /api/exchangerate/exists/{date} | Check if rates exist                  | Authenticated |
+| POST   | /api/exchangerate               | Create daily rates (all 3 currencies) | Authenticated |
+| PUT    | /api/exchangerate               | Update single rate for today          | Authenticated |
+| POST   | /api/transaction/buy            | Create buy transaction                | Authenticated |
+| POST   | /api/transaction/sell           | Create sell transaction               | Authenticated |
+| GET    | /api/transaction                | List transactions with filters        | Authenticated |
+| GET    | /api/transaction/{id}           | Get transaction by ID                 | Authenticated |
+| GET    | /api/statistics/rates           | Rate trends for charts                | Authenticated |
+| GET    | /api/statistics/transactions    | Transaction statistics                | Authenticated |
+| GET    | /api/statistics/summary         | Dashboard summary                     | Authenticated |
+| GET    | /api/user                       | List all users                        | Admin only    |
+| GET    | /api/user/{id}                  | Get user by ID                        | Admin only    |
+| POST   | /api/user                       | Create new user                       | Admin only    |
+| PUT    | /api/user/{id}                  | Update user                           | Admin only    |
+| DELETE | /api/user/{id}                  | Delete user (not self)                | Admin only    |
+| POST   | /api/user/{id}/reset-password   | Reset user password                   | Admin only    |
 
 ---
 
@@ -1859,20 +1907,24 @@ dotnet ef database update --project Solution.Database --startup-project Solution
 ## Verification Plan
 
 ### 1. Build & Migration
+
 ```bash
 dotnet build
 dotnet ef database update --project Solution.Database --startup-project Solution.Api
 ```
 
 ### 2. Run API
+
 ```bash
 dotnet run --project Solution.Api
 ```
 
 ### 3. Test with Scalar UI
+
 Navigate to `https://localhost:{port}/scalar/v1`
 
 **Test Sequence:**
+
 1. Login with admin credentials (from appsettings.json)
 2. POST /api/exchangerate - Create today's rates
 3. GET /api/exchangerate/today - Verify rates were created
@@ -1885,6 +1937,7 @@ Navigate to `https://localhost:{port}/scalar/v1`
 10. DELETE /api/user/{id} (Admin) - Test self-deletion prevention
 
 ### 4. Business Rules Verification Checklist
+
 - [ ] Exchange rates only for current date
 - [ ] All 3 currencies required on initial creation
 - [ ] Rate update only for today's rates
@@ -1898,14 +1951,14 @@ Navigate to `https://localhost:{port}/scalar/v1`
 
 ## Files Summary
 
-| Layer | New Files | Modified Files |
-|-------|-----------|----------------|
-| Database | 3 enums, 2 entities | AppDbContext.cs, GlobalImports.cs |
-| Core | 6 request DTOs, 8 response DTOs, 4 interfaces | GlobalImports.cs |
-| Validators | 6 validators | GlobalImports.cs |
-| Common | 3 error files | - |
-| Services | 4 services | GlobalImports.cs |
-| Api | 4 controllers | DependencyInjectionConfiguration.cs, GlobalImports.cs |
+| Layer      | New Files                                     | Modified Files                                        |
+| ---------- | --------------------------------------------- | ----------------------------------------------------- |
+| Database   | 3 enums, 2 entities                           | AppDbContext.cs, GlobalImports.cs                     |
+| Core       | 6 request DTOs, 8 response DTOs, 4 interfaces | GlobalImports.cs                                      |
+| Validators | 6 validators                                  | GlobalImports.cs                                      |
+| Common     | 3 error files                                 | -                                                     |
+| Services   | 4 services                                    | GlobalImports.cs                                      |
+| Api        | 4 controllers                                 | DependencyInjectionConfiguration.cs, GlobalImports.cs |
 
 **Total new files: ~30**
 **Modified files: ~7**
