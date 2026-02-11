@@ -1,4 +1,4 @@
-﻿namespace Solution.Validators;
+﻿namespace Solution.Validators.RequestValidators;
 
 public class UpdateExchangeRateRequestValidator : AbstractValidator<UpdateExchangeRateRequest>
 {

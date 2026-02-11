@@ -1,6 +1,4 @@
-﻿
-
-namespace Solution.Validators;
+﻿namespace Solution.Validators.RequestValidators;
 
 public class CreateExchangeRatesRequestValidator : AbstractValidator<CreateExchangeRatesRequest> 
 {
