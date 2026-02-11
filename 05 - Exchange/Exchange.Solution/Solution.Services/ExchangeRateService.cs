@@ -1,13 +1,4 @@
-﻿using Castle.Core.Logging;
-using ErrorOr;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Solution.Core.Models.Response;
-using Solution.Database;
-using System.ComponentModel;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
+﻿
 namespace Solution.Services;
 
 public class ExchangeRateService : IExchangeRateService
