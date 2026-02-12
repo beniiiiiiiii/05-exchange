@@ -11,3 +11,5 @@ global using Solution.Core.Models.Responses;
 global using Solution.Database.Entities;
 global using Solution.Database.Enums;
 global using System.Security.Claims;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.AspNetCore.Identity.Data;

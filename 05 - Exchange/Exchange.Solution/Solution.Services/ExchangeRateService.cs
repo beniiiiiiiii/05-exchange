@@ -1,6 +1,4 @@
-﻿
-
-namespace Solution.Services;
+﻿namespace Solution.Services;
 
 public class ExchangeRateService : IExchangeRateService
 {
