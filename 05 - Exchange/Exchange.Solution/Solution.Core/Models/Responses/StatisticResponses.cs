@@ -1,6 +1,6 @@
 ﻿namespace Solution.Core.Models.Responses;
 
-public class RateStatisticResponse
+public class RateStatisticsResponse
 {
     [JsonPropertyName("currency")]
     public string Currency { get; set; }
