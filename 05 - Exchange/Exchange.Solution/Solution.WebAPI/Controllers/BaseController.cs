@@ -28,8 +28,11 @@ public abstract class BaseController : ControllerBase
                 detail: error.Description);
         }
 
-        return ValidationProblem(errors.ToDictionary(
-            e => e.Code,
-            e => new[] { e.Description }));
+        return ValidationProblem(new ValidationProblemDetails(
+            errors.ToDictionary(
+                e => e.Code,
+                e => new[] { e.Description }
+            )
+        ));
     }
 }
