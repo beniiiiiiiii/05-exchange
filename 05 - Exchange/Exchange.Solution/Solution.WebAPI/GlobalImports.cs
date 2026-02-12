@@ -15,3 +15,6 @@ global using Solution.Domain.Models.Views;
 global using Solution.WebAPI.Configurations;
 global using System.ComponentModel.DataAnnotations;
 global using System.Text;
+global using Solution.Api.Controllers;
+global using Solution.Core.Interfaces.Services;
+
