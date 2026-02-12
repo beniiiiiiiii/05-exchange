@@ -10,4 +10,6 @@ global using Microsoft.OpenApi;
 global using Solution.WebAPI.Configurations;
 global using System.ComponentModel.DataAnnotations;
 global using System.Text;
-global using Solution.Core.Models.Settings;
+global using Solution.Api.Controllers;
+global using Solution.Core.Interfaces.Services;
+

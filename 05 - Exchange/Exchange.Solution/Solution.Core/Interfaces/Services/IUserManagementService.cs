@@ -1,4 +1,6 @@
-﻿namespace Solution.Core.Interfaces.Services;
+﻿using Microsoft.AspNetCore.Identity.Data;
+
+namespace Solution.Core.Interfaces.Services;
 
 public interface IUserManagementService
 {
@@ -7,4 +9,5 @@ public interface IUserManagementService
     Task<ErrorOr<UserResponseModel>> CreateUserAsync(CreateUserRequest request);
     Task<ErrorOr<UserResponseModel>> UpdateUserAsync(string userId, UpdateUserRequest request);
     Task<ErrorOr<Success>> DeleteUserAsync(string userId, string currentUserId);
+    Task<ErrorOr<Success>> ResetPasswordAsync(string userId, ResetPasswordRequest request);
 }
