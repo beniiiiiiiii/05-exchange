@@ -12,14 +12,14 @@ public class CreateExchangeRatesRequest
     public decimal UsdSellRate { get; set; }
 
     [JsonPropertyName("gbpBuyRate")]
-    public decimal gbpBuyRate { get; set; }
+    public decimal GbpBuyRate { get; set; }
 
     [JsonPropertyName("gbpSellRate")]
-    public decimal gbpSellRate { get; set; }
+    public decimal GbpSellRate { get; set; }
 
     [JsonPropertyName("chfBuyRate")]
-    public decimal chfBuyRate { get; set; }
+    public decimal ChfBuyRate { get; set; }
 
     [JsonPropertyName("chfSellRate")]
-    public decimal chfSellRate { get; set; }
+    public decimal ChfSellRate { get; set; }
 }
