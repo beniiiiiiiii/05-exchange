@@ -1,6 +1,4 @@
-﻿using Solution.Domain.Enums;
-
-namespace Solution.Core.Models.Requests;
+﻿namespace Solution.Core.Models.Requests;
 
 public class CreateTransactionRequest
 {
@@ -15,4 +13,7 @@ public class CreateTransactionRequest
 
     [JsonPropertyName("customerIdType")]
     public CustomerIdType CustomerIdType { get; set; }
+
+    [JsonPropertyName("customerIdNumber")]
+    public string CustomerIdNumber { get; set; }
 }
