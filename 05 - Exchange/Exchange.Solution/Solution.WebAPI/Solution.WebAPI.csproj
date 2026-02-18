@@ -27,7 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Solution.Domain\Solution.Domain.csproj" />
+    <ProjectReference Include="..\Solution.Core\Solution.Core.csproj" />
+    <ProjectReference Include="..\Solution.Database\Solution.Database.csproj" />
     <ProjectReference Include="..\Solution.Services\Solution.Services.csproj" />
   </ItemGroup>
 
