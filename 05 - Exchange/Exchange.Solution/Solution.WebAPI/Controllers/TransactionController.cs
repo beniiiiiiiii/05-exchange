@@ -28,7 +28,7 @@ public class TransactionController(ITransactionService transactionService) : Bas
     {
         var result = await transactionService.CreateSellTransactionAsync(request);
         return result.Match(
-            result => CreatedAtAction(nameof(GetTransactionByIdAsync), new { id = result.Id }, result)
+            result => CreatedAtAction(nameof(GetTransactionByIdAsync), new { id = result.Id }, result),
             errors => Problem(errors)
         );
     }
@@ -40,7 +40,7 @@ public class TransactionController(ITransactionService transactionService) : Bas
         [FromQuery] Currency? currency,
         [FromQuery] TransactionType? type)
     {
-        var result = await transactionService.GetTransactionAsync(date, currency, type);
+        var result = await transactionService.GetTransactionsAsync(date, currency, type);
         return result.Match(
             result => Ok(result),
             errors => Problem(errors)

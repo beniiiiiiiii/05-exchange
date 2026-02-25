@@ -13,3 +13,10 @@ global using Solution.Database.Enums;
 global using System.Security.Claims;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.AspNetCore.Identity.Data;
+global using Microsoft.Extensions.Options;
+global using Microsoft.IdentityModel.Tokens;
+global using Solution.Core.Models.Requests.Security;
+global using Solution.Core.Models.Settings;
+global using System.IdentityModel.Tokens.Jwt;
+global using System.Text;
+
