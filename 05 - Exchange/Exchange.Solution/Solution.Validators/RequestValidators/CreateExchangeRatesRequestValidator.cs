@@ -18,19 +18,19 @@ public class CreateExchangeRatesRequestValidator : AbstractValidator<CreateExcha
             .GreaterThan(0)
             .WithMessage("USD Sell Rate must be greater than 0");
 
-        RuleFor(x => x.gbpBuyRate)
+        RuleFor(x => x.GbpBuyRate)
             .GreaterThan(0)
             .WithMessage("GBP Buy Rate must be greater than 0");
 
-        RuleFor(x => x.gbpSellRate)
+        RuleFor(x => x.GbpSellRate)
             .GreaterThan(0)
             .WithMessage("GBP Sell Rate must be greater than 0");
 
-        RuleFor(x => x.chfBuyRate)
+        RuleFor(x => x.ChfBuyRate)
             .GreaterThan(0)
             .WithMessage("CHF Buy Rate must be greater than 0");
 
-        RuleFor(x => x.chfSellRate)
+        RuleFor(x => x.ChfSellRate)
             .GreaterThan(0)
             .WithMessage("CHF Sell Rate must be greater than 0");
     }

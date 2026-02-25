@@ -14,6 +14,6 @@ public class UserResponseModel
     public string Email { get; set; }
 
     [Required]
-    [JsonPropertyName("roles")]
-    public IList<string> Roles { get; set; } = [];
+    [JsonPropertyName("role")]
+    public string Roles { get; set; }
 }

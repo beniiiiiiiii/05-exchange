@@ -27,10 +27,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Scalar.AspNetCore" Version="2.12.37" />
-	<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.1.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="10.1.2" />
-	  <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" Version="10.1.2" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.12.47" />
+	<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.1.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="10.1.4" />
+	  <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" Version="10.1.4" />
   </ItemGroup>
 
   <ItemGroup>

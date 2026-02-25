@@ -20,8 +20,7 @@ public class UserManagementService : IUserManagementService
     public async Task<ErrorOr<UserListResponse>> GetAllUsersAsync()
     {
         var users = await dbContext.Users
-            .Include(u => u.UserRoles)
-            .ThenInclude(ur => ur.Role)
+            .Include(u => u.Role)
             .ToListAsync();
 
         return new UserListResponse
@@ -34,9 +33,8 @@ public class UserManagementService : IUserManagementService
     public async Task<ErrorOr<UserResponseModel>> GetUserByIdAsync(string userId)
     {
         var user = await dbContext.Users
-            .Include(u => u.UserRoles)
-            .ThenInclude(ur => ur.Role)
-            .FirstOrDefaultAsync(u => u.Id == userId);
+            .Include(u => u.Role)
+            .FirstOrDefaultAsync(u => u.Id.ToString() == userId);
 
         if (user is null)
             return Errors.User.NotFound;
@@ -52,7 +50,7 @@ public class UserManagementService : IUserManagementService
 
         var user = new UserEntity
         {
-            Name = request.Name,
+            FullName = request.Name,
             Email = request.Email,
             UserName = request.Email,
             EmailConfirmed = true
@@ -66,31 +64,28 @@ public class UserManagementService : IUserManagementService
 
         logger.LogInformation("User {Email} created with role {Role}", request.Email, request.Role);
 
-        return await GetUserByIdAsync(user.Id);
+        return await GetUserByIdAsync(user.Id.ToString());
     }
 
     public async Task<ErrorOr<UserResponseModel>> UpdateUserAsync(string userId, UpdateUserRequest request)
     {
         var user = await dbContext.Users
-            .Include(u => u.UserRoles)
-            .ThenInclude(ur => ur.Role)
-            .FirstOrDefaultAsync(u => u.Id == userId);
+            .Include(u => u.Role)
+            .FirstOrDefaultAsync(u => u.Id.ToString() == userId);
 
         if (user is null)
             return Errors.User.NotFound;
 
-        // Check if email is taken by another user
         var existingUser = await userManager.FindByEmailAsync(request.Email);
-        if (existingUser is not null && existingUser.Id != userId)
+        if (existingUser is not null && existingUser.Id.ToString() != userId)
             return Errors.User.EmailAlreadyExists;
 
-        user.Name = request.Name;
+        user.FullName = request.Name;
         user.Email = request.Email;
         user.UserName = request.Email;
 
         await dbContext.SaveChangesAsync();
 
-        // Update role
         var currentRoles = await userManager.GetRolesAsync(user);
         await userManager.RemoveFromRolesAsync(user, currentRoles);
         await userManager.AddToRoleAsync(user, request.Role.ToString());
@@ -139,11 +134,10 @@ public class UserManagementService : IUserManagementService
     {
         return new UserResponseModel
         {
-            Id = entity.Id,
-            Name = entity.Name,
+            Id = entity.Id.ToString(),
+            Name = entity.FullName,
             Email = entity.Email,
-            Roles = entity.UserRoles?.Select(ur => ur.Role?.Name).Where(r => r != null).ToList()
-                    ?? new List<string>()
+            Roles = entity.Role.ToString()
         };
     }
 }

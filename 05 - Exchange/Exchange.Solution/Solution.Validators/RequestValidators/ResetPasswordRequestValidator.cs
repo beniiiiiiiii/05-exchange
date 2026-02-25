@@ -1,4 +1,6 @@
-﻿namespace Solution.Validators.RequestValidators;
+﻿using Microsoft.AspNetCore.Identity.Data;
+
+namespace Solution.Validators.RequestValidators;
 
 public class ResetPasswordRequestValidator: AbstractValidator<ResetPasswordRequest>
 {
@@ -8,6 +10,6 @@ public class ResetPasswordRequestValidator: AbstractValidator<ResetPasswordReque
             .NotEmpty()
             .WithMessage("New password is required.")
             .MinimumLength(8)
-            .WithMessage("New password must be at least 8 characters long.")
+            .WithMessage("New password must be at least 8 characters long.");
     }
 }

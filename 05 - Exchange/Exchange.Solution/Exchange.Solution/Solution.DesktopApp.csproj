@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net10.0-android;net10.0-ios;net10.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks>net10.0-windows10.0.19041.0</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-windows10.0.19041.0</TargetFrameworks>
 
 		<!-- Note for MacCatalyst:
@@ -64,6 +64,14 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Essentials" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Solution.Common\Solution.Common.csproj" />
+	  <ProjectReference Include="..\Solution.Core\Solution.Core.csproj" />
+	  <ProjectReference Include="..\Solution.Database\Solution.Database.csproj" />
+	  <ProjectReference Include="..\Solution.Services\Solution.Services.csproj" />
+	  <ProjectReference Include="..\Solution.Validators\Solution.Validators.csproj" />
 	</ItemGroup>
 
 </Project>
