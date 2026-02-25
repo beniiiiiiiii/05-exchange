@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Solution.Domain.Database.Entities;
+using Solution.Database;
+using Solution.Database.Entities;
 
 namespace Solution.WebAPI.Configurations;
 

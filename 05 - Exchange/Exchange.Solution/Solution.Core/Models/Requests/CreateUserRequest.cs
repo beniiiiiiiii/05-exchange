@@ -1,6 +1,4 @@
-﻿using Solution.Domain.Enums;
-
-namespace Solution.Core.Models.Requests;
+﻿namespace Solution.Core.Models.Requests;
 
 public class CreateUserRequest
 {
