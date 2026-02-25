@@ -8,17 +8,17 @@ builder.ConfigureDatabase()
        .UseIdentity()
        .ConfigureDI()
        .LoadEnvironmentVariables()
-       //.UseScalarOpenAPI()
+       .UseScalarOpenAPI();
        //.UseSwashbuckleOpenAPI()
-       .UseReDocOpenAPI();
+       //.UseReDocOpenAPI();
 
 var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseSecurity();
 app.MapControllers();
-//app.UseScalarOpenAPI();
+app.UseScalarOpenAPI();
 //app.UseSwashbuckleOpenAPI();
-app.UseReDocOpenAPI();
+//app.UseReDocOpenAPI();
 
 await app.RunAsync();
