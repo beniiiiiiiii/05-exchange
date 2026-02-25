@@ -6,3 +6,4 @@ global using ErrorOr;
 global using Solution.Core.Models.Requests;
 global using Solution.Core.Models.Responses;
 global using Solution.Core.Models.Response;
+global using Solution.Core.Models.Requests.Security;

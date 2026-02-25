@@ -39,8 +39,6 @@
             if (exchangeRate is null)
                 return Errors.Transaction.NoRateForToday;
 
-            // Buy: Customer buys foreign currency = bank sells = use SellRate
-            // Sell: Customer sells foreign currency = bank buys = use BuyRate
             var appliedRate = type == TransactionType.Buy
                 ? exchangeRate.SellRate
                 : exchangeRate.BuyRate;

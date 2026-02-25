@@ -1,4 +1,5 @@
-﻿
+﻿using Solution.Core.Models.Requests.Security;
+using Solution.Core.Models.Responses;
 
 namespace Solution.WebAPI.Controllers;
 
