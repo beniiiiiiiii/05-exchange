@@ -17,7 +17,7 @@ public class ExchangeRateController(IExchangeRateService exchangeRateService) : 
         [FromQuery] DateOnly? startDate,
         [FromQuery] DateOnly? endDate)
     {
-        var result = await exchangeRateService.GetRateHistoryAsync(startDate, endDate);
+        var result = await exchangeRateService.GetRatesHistoryAsync(startDate, endDate);
         return result.Match(
             result => Ok(result),
             errors => Problem(errors)
