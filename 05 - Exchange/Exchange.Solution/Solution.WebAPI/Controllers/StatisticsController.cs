@@ -7,7 +7,7 @@ namespace Solution.Api.Controllers;
 public class StatisticsController(IStatisticsService statisticsService) : BaseController
 {
     [HttpGet("rates")]
-    [ProducesResponseType(typeof(List<RateStatisticResponse>), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(List<RateStatisticsResponse>), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> GetRateStatisticsAsync(
         [FromQuery][Required] DateOnly startDate,
         [FromQuery][Required] DateOnly endDate)

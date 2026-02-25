@@ -1,6 +1,4 @@
-﻿
-
-
+﻿using Solution.Core.Models.Settings;
 
 namespace Solution.WebAPI.Configurations;
 

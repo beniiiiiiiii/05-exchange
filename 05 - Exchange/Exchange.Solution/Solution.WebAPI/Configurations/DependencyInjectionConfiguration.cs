@@ -1,4 +1,7 @@
-﻿namespace Solution.WebAPI.Configurations;
+﻿using Solution.Core.Interfaces.Services;
+using Solution.Services.Services;
+
+namespace Solution.WebAPI.Configurations;
 
 public static class DependencyInjectionConfiguration
 {
@@ -9,8 +12,8 @@ public static class DependencyInjectionConfiguration
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddHttpClient();
 
-            builder.Services.AddTransient<ISecurityService, SecurityService>();
-            builder.Services.AddTransient<IUserService, UserService>();
+            builder.Services.AddTransient<ISecurityService, ISecurityService>();
+            builder.Services.AddTransient<IUserManagementService, UserManagementService>();
 
             return builder;
         }

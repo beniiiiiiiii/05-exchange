@@ -1,4 +1,6 @@
-﻿namespace Solution.WebAPI.Configurations;
+﻿using Solution.Database;
+
+namespace Solution.WebAPI.Configurations;
 
 public static class DatabaseConfiguration
 {
@@ -12,7 +14,7 @@ public static class DatabaseConfiguration
                 options.UseLazyLoadingProxies()
                 .UseSqlServer(connectionString, options =>
                 {
-                    options.MigrationsAssembly(DomainAssemblyReference.Assembly);
+                    options.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName);
                     options.EnableRetryOnFailure();
                     options.CommandTimeout(300);
                 })

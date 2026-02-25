@@ -1,4 +1,6 @@
-﻿namespace Solution.WebAPI.Configurations;
+﻿using Solution.Core.Models.Settings;
+
+namespace Solution.WebAPI.Configurations;
 
 public static class SettingsConfiguration
 {
