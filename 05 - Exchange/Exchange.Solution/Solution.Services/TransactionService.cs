@@ -136,7 +136,7 @@
                 CustomerIdType = entity.CustomerIdType.ToString(),
                 CustomerIdNumber = entity.CustomerIdNumber,
                 TransactionDate = entity.TransactionDate,
-                ProcessedBy = entity.ProcessedByUser?.Name ?? "Unknown"
+                ProcessedBy = entity.ProcessedByUser?.FullName ?? "Unknown"
             };
         }
     }
