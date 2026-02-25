@@ -1,7 +1,4 @@
-﻿using Solution.Core.Models.Responses;
-using System.Net;
-
-namespace Solution.Api.Controllers;
+﻿namespace Solution.Api.Controllers;
 
 [Authorize]
 public class StatisticsController(IStatisticsService statisticsService) : BaseController

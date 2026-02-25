@@ -1,7 +1,4 @@
-﻿using Solution.Core.Models.Requests.Security;
-using Solution.Core.Models.Responses;
-
-namespace Solution.WebAPI.Controllers;
+﻿namespace Solution.WebAPI.Controllers;
 
 [ApiController]
 [ProducesResponseType(statusCode: 400, type: typeof(BadRequestObjectResult))]

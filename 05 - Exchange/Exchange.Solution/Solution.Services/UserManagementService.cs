@@ -1,5 +1,4 @@
-﻿
-namespace Solution.Services.Services;
+﻿namespace Solution.Services.Services;
 
 public class UserManagementService : IUserManagementService
 {

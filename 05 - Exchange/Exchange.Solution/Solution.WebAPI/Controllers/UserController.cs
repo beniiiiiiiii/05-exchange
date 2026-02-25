@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity.Data;
-using Solution.Core.Models.Requests;
-using Solution.Core.Models.Responses;
-using System.Net;
-using System.Security.Claims;
-
-namespace Solution.WebAPI.Controllers;
+﻿namespace Solution.WebAPI.Controllers;
 
 [Authorize(Roles = "Administrator")]
 [Route("Controller")]

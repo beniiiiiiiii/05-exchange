@@ -1,10 +1,4 @@
-﻿
-using Solution.Core.Models.Requests;
-using Solution.Core.Models.Responses;
-using Solution.Database.Enums;
-using System.Net;
-
-namespace Solution.WebAPI.Controllers;
+﻿namespace Solution.WebAPI.Controllers;
 
 [Authorize]
 public class TransactionController(ITransactionService transactionService) : BaseController

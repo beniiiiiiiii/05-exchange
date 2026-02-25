@@ -1,12 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Solution.Api.Controllers;
-using Solution.Core.Interfaces.Services;
-using Solution.Core.Models.Requests;
-using Solution.Core.Models.Responses;
-using System.Net;
-
-namespace Solution.WebAPI.Controllers;
+﻿namespace Solution.WebAPI.Controllers;
 
 [Authorize]
 public class ExchangeRateController(IExchangeRateService exchangeRateService) : BaseController

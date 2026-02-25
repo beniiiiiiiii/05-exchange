@@ -12,4 +12,10 @@ global using System.ComponentModel.DataAnnotations;
 global using System.Text;
 global using Solution.Api.Controllers;
 global using Solution.Core.Interfaces.Services;
-
+global using Solution.Core.Models.Requests;
+global using Solution.Core.Models.Responses;
+global using System.Net;
+global using Solution.Database.Enums;
+global using Solution.Core.Models.Requests.Security;
+global using Microsoft.AspNetCore.Identity.Data;
+global using System.Security.Claims;
