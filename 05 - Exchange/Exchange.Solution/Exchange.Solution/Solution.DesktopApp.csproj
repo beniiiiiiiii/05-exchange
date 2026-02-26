@@ -78,6 +78,9 @@
 	  <Folder Include="Configurations\" />
 	  <Folder Include="Converters\" />
 	  <Folder Include="Extensions\" />
+	  <Folder Include="Components\" />
+	  <Folder Include="Views\" />
+	  <Folder Include="ViewModels\" />
 	</ItemGroup>
 
 </Project>
