@@ -74,4 +74,10 @@
 	  <ProjectReference Include="..\Solution.Validators\Solution.Validators.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Configurations\" />
+	  <Folder Include="Converters\" />
+	  <Folder Include="Extensions\" />
+	</ItemGroup>
+
 </Project>
