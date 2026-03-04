@@ -18,6 +18,30 @@ public class SecurityService(UserManager<UserEntity> userManager, IOptions<JWTSe
         return result.Succeeded ? Result.Success : Error.Failure(description: string.Join(", ", errors));
     }
 
+    public async Task<ErrorOr<Success>> RegisterAdminAsync(RegisterRequestModel model)
+    {
+        var user = new UserEntity
+        {
+            Email = model.Email,
+            EmailConfirmed = true,
+            FullName = $"{model.FirstName} {model.LastName}",
+            PhoneNumber = model.PhoneNumber,
+            PhoneNumberConfirmed = true,
+            UserName = $"{model.FirstName}.{model.LastName}",
+            Role = UserRole.Admin
+        };
+
+        var result = await userManager.CreateAsync(user, model.Password);
+
+        if (result.Succeeded)
+        {
+            await userManager.AddToRoleAsync(user, "Admin");
+        }
+
+        var errors = result.Errors.Select(x => x.Description);
+        return result.Succeeded ? Result.Success : Error.Failure(description: string.Join(", ", errors));
+    }
+
     public async Task<ErrorOr<TokenResponseModel>> LoginAsync(LoginRequestModel model)
     {
         var user = await userManager.FindByEmailAsync(model.Email);

@@ -1,3 +1,5 @@
+using Solution.WebAPI.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -13,6 +15,10 @@ builder.ConfigureDatabase()
        //.UseReDocOpenAPI();
 
 var app = builder.Build();
+
+// Seed roles
+await app.Services.SeedRolesAsync();
+
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseSecurity();

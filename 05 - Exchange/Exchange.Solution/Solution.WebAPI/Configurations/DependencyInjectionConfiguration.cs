@@ -15,6 +15,8 @@ public static class DependencyInjectionConfiguration
 
             builder.Services.AddTransient<ISecurityService, SecurityService>();
             builder.Services.AddTransient<IUserManagementService, UserManagementService>();
+            builder.Services.AddScoped<IExchangeRateService, ExchangeRateService>();
+            builder.Services.AddScoped<ICurrentUserProvider, WebCurrentUserProvider>();
 
             return builder;
         }

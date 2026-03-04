@@ -25,10 +25,19 @@ public class WebCurrentUserProvider : ICurrentUserProvider
 
     public Guid GetCurrentUserId()
     {
-        var userIdClaim = _httpContextAccessor.HttpContext?.User.FindFirstValue("uid");
-        if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
-            throw new InvalidOperationException("User not authenticated or invalid user ID");
-        return userId;
+        var user = _httpContextAccessor.HttpContext?.User;
+        
+        if (user == null || !user.Identity?.IsAuthenticated == true)
+            throw new UnauthorizedAccessException("User is not authenticated.");
+        
+        var userIdClaim = user.FindFirst(ClaimTypes.NameIdentifier)?.Value
+                       ?? user.FindFirst("sub")?.Value
+                       ?? user.FindFirst("userId")?.Value;
+        
+        if (string.IsNullOrEmpty(userIdClaim))
+            throw new UnauthorizedAccessException("User ID claim not found in token.");
+        
+        return Guid.Parse(userIdClaim);
     }
 }
 

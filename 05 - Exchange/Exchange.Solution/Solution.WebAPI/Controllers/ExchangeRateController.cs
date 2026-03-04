@@ -56,7 +56,7 @@ public class ExchangeRateController(IExchangeRateService exchangeRateService) : 
     {
         var result = await exchangeRateService.CreateDailyRatesAsync(request);
         return result.Match(
-            result => CreatedAtAction(nameof(GetRateByDateAsync), new { date = result.Date }, result),
+            result => CreatedAtAction(nameof(GetRateByDateAsync), new { date = result.Date.ToString("yyyy-MM-dd") }, result),
             errors => Problem(errors)
         );
     }

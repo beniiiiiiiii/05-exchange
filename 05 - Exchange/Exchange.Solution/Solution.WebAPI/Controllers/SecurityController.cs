@@ -18,6 +18,19 @@ public class SecurityController(ISecurityService securityService) : ControllerBa
     }
 
     [HttpPost]
+    [Route("api/security/register-admin")]
+    [ProducesResponseType(type: typeof(Success), statusCode: 200)]
+    [EndpointDescription("This endpoint will register a new admin user - REMOVE IN PRODUCTION!")]
+    public async Task<IActionResult> RegisterAdminAsync([FromBody][Required] RegisterRequestModel model)
+    {
+        var result = await securityService.RegisterAdminAsync(model);
+        return result.Match(
+            value => Ok(value),
+            errors => errors.ToProblemResult()
+            );
+    }
+
+    [HttpPost]
     [Route("api/security/login")]
     [ProducesResponseType(type: typeof(TokenResponseModel), statusCode: 200)]
     [EndpointDescription("This endpoint will log you into a user in the database provided you have the correct email and password")]
