@@ -3,16 +3,16 @@
 public class ExchangeRateService : IExchangeRateService
 {
     private readonly ApplicationDbContext dbContext;
-    private readonly IHttpContextAccessor httpContextAccessor;
+    private readonly ICurrentUserProvider currentUserProvider;
     private readonly ILogger<ExchangeRateService> logger;
 
     public ExchangeRateService(
         ApplicationDbContext dbContext,
-        IHttpContextAccessor httpContextAccessor,
+        ICurrentUserProvider currentUserProvider,
         ILogger<ExchangeRateService> logger)
     {
         this.dbContext = dbContext;
-        this.httpContextAccessor = httpContextAccessor;
+        this.currentUserProvider = currentUserProvider;
         this.logger = logger;
     }
 
@@ -115,10 +115,9 @@ public class ExchangeRateService : IExchangeRateService
         return MapToResponse(rate);
     }
 
-    private string GetCurrentUserId()
+    private Guid GetCurrentUserId()
     {
-        return httpContextAccessor.HttpContext?.User.FindFirstValue("uid")
-            ?? throw new InvalidOperationException("User not authenticated");
+        return currentUserProvider.GetCurrentUserId();
     }
 
     private static ExchangeRatesResponse MapToResponse(DateOnly date, List<ExchangeRateEntity> rates)

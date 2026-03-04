@@ -26,8 +26,8 @@ public class ExchangeRateEntity
     public DateTime? ModifiedAt { get; set; }
 
     [Required]
-    public string CreatedByUserId { get; set; }
-    public string? ModifiedByUserId { get; set; }
+    public Guid CreatedByUserId { get; set; }
+    public Guid? ModifiedByUserId { get; set; }
 
     public virtual UserEntity CreatedByUser { get; set; }
     public virtual UserEntity? ModifiedByUser { get; set; }

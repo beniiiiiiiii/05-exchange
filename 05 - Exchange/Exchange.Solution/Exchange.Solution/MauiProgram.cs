@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Solution.Services.Services;
 using Solution.Database;
+using Microsoft.AspNetCore.Http;
 
 namespace Solution.DesktopApp
 {
@@ -18,14 +19,16 @@ namespace Solution.DesktopApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            // Logging
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
 
             builder.Services.AddSingleton<ISecureStorage>(SecureStorage.Default);
 
-            // Database
+            builder.Services.AddSingleton<ICurrentUserProvider, DesktopCurrentUserProvider>();
+
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             var connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;Database=AuthDB;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True;";
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseLazyLoadingProxies()

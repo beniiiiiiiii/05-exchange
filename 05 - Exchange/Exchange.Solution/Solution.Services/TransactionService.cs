@@ -3,16 +3,16 @@
     public class TransactionService : ITransactionService
     {
         private readonly ApplicationDbContext dbContext;
-        private readonly IHttpContextAccessor httpContextAccessor;
+        private readonly ICurrentUserProvider currentUserProvider;
         private readonly ILogger<TransactionService> logger;
 
         public TransactionService(
             ApplicationDbContext dbContext,
-            IHttpContextAccessor httpContextAccessor,
+            ICurrentUserProvider currentUserProvider,
             ILogger<TransactionService> logger)
         {
             this.dbContext = dbContext;
-            this.httpContextAccessor = httpContextAccessor;
+            this.currentUserProvider = currentUserProvider;
             this.logger = logger;
         }
 
@@ -114,10 +114,9 @@
             return MapToResponse(transaction);
         }
 
-        private string GetCurrentUserId()
+        private Guid GetCurrentUserId()
         {
-            return httpContextAccessor.HttpContext?.User.FindFirstValue("uid")
-                ?? throw new InvalidOperationException("User not authenticated");
+            return currentUserProvider.GetCurrentUserId();
         }
 
         private static TransactionResponse MapToResponse(TransactionEntity entity)

@@ -39,10 +39,10 @@ public class TransactionEntity
     public DateTime TransactionDate { get; set; }
 
     [Required]
-    public string ProcessedByUserId { get; set; }
+    public Guid ProcessedByUserId { get; set; }
 
     public int ExchangeRateId { get; set; }
 
     public virtual UserEntity ProcessedByUser { get; set; }
-    public virtual ExchangeRateEntity  ExchangeRate { get; set; }   
+    public virtual ExchangeRateEntity  ExchangeRate { get; set; }
 }
