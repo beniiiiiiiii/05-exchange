@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 using Solution.Services.Services;
+using Solution.Database;
 
 namespace Solution.DesktopApp
 {
@@ -24,7 +26,15 @@ namespace Solution.DesktopApp
             builder.Services.AddSingleton<ISecureStorage>(SecureStorage.Default);
 
             // Database
-            builder.Services.AddTransient<ApplicationDbContext>();
+            var connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;Database=AuthDB;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True;";
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseLazyLoadingProxies()
+                .UseSqlServer(connectionString, opt =>
+                {
+                    opt.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName);
+                    opt.EnableRetryOnFailure();
+                    opt.CommandTimeout(300);
+                }));
 
             // Services
             builder.Services.AddTransient<IStatisticsService, StatisticsService>();
