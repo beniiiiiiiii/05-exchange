@@ -77,7 +77,12 @@ public partial class TransactionViewModel : BaseViewModel
             
             if (result.IsError)
             {
-                SetError(result.FirstError.Description);
+                var errorMsg = result.FirstError.Description;
+                if (result.FirstError.Code == "Transaction.NoRateForToday")
+                {
+                    errorMsg = "Please set today's exchange rates first before creating transactions. Go to Exchange Rates page to set rates.";
+                }
+                SetError(errorMsg);
                 return;
             }
 
@@ -87,7 +92,7 @@ public partial class TransactionViewModel : BaseViewModel
         }
         catch (Exception ex)
         {
-            SetError($"Error creating transaction: {ex.Message}");
+            SetError($"Error creating buy transaction: {ex.Message}\n\nInner: {ex.InnerException?.Message}");
         }
         finally
         {
@@ -120,7 +125,12 @@ public partial class TransactionViewModel : BaseViewModel
             
             if (result.IsError)
             {
-                SetError(result.FirstError.Description);
+                var errorMsg = result.FirstError.Description;
+                if (result.FirstError.Code == "Transaction.NoRateForToday")
+                {
+                    errorMsg = "Please set today's exchange rates first before creating transactions. Go to Exchange Rates page to set rates.";
+                }
+                SetError(errorMsg);
                 return;
             }
 
@@ -130,7 +140,7 @@ public partial class TransactionViewModel : BaseViewModel
         }
         catch (Exception ex)
         {
-            SetError($"Error creating transaction: {ex.Message}");
+            SetError($"Error creating sell transaction: {ex.Message}\n\nInner: {ex.InnerException?.Message}");
         }
         finally
         {

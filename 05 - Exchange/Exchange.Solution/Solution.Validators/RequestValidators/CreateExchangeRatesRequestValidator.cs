@@ -6,9 +6,7 @@ public class CreateExchangeRatesRequestValidator : AbstractValidator<CreateExcha
     {
         RuleFor(x => x.Date)
             .NotEmpty()
-            .WithMessage("Date is required")
-            .Must(BeCurrentDate)
-            .WithMessage("Exchange rates can only be created for the current day");
+            .WithMessage("Date is required");
 
         RuleFor(x => x.UsdBuyRate)
             .GreaterThan(0)
@@ -34,11 +32,4 @@ public class CreateExchangeRatesRequestValidator : AbstractValidator<CreateExcha
             .GreaterThan(0)
             .WithMessage("CHF Sell Rate must be greater than 0");
     }
-
-    private bool BeCurrentDate(DateOnly date)
-    {
-        return date == DateOnly.FromDateTime(DateTime.Today);
-    }
-
-
 }

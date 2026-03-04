@@ -13,10 +13,12 @@ public static class DependencyInjectionConfiguration
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddHttpClient();
 
-            builder.Services.AddTransient<ISecurityService, SecurityService>();
-            builder.Services.AddTransient<IUserManagementService, UserManagementService>();
+            builder.Services.AddScoped<ISecurityService, SecurityService>();
+            builder.Services.AddScoped<IUserManagementService, UserManagementService>();
             builder.Services.AddScoped<IExchangeRateService, ExchangeRateService>();
             builder.Services.AddScoped<ICurrentUserProvider, WebCurrentUserProvider>();
+            builder.Services.AddScoped<ITransactionService, TransactionService>();
+            builder.Services.AddScoped<IStatisticsService, StatisticsService>();
 
             return builder;
         }

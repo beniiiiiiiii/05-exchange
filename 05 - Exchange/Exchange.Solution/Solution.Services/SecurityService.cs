@@ -35,7 +35,7 @@ public class SecurityService(UserManager<UserEntity> userManager, IOptions<JWTSe
 
         if (result.Succeeded)
         {
-            await userManager.AddToRoleAsync(user, "Admin");
+            await userManager.AddToRoleAsync(user, "Administrator");
         }
 
         var errors = result.Errors.Select(x => x.Description);
@@ -65,6 +65,7 @@ public class SecurityService(UserManager<UserEntity> userManager, IOptions<JWTSe
         var claims = new List<Claim>
         {
             new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+            new(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new(JwtRegisteredClaimNames.Email, user.Email ?? string.Empty),
             new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
