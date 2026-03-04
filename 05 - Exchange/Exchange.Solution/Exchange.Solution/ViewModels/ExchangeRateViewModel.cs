@@ -1,3 +1,5 @@
+using Solution.Core.Models.Response;
+
 namespace Solution.DesktopApp.ViewModels;
 
 public partial class ExchangeRateViewModel : BaseViewModel
@@ -28,8 +30,8 @@ public partial class ExchangeRateViewModel : BaseViewModel
 
         try
         {
-            var result = await _exchangeRateService.GetExchangeRatesAsync(null);
-            
+            var result = await _exchangeRateService.GetRatesHistoryAsync(null, null);
+
             if (result.IsError)
             {
                 SetError(result.FirstError.Description);
@@ -37,8 +39,13 @@ public partial class ExchangeRateViewModel : BaseViewModel
             }
 
             ExchangeRates.Clear();
-            foreach (var rate in result.Value)
-                ExchangeRates.Add(rate);
+
+            var ratesResponse = result.Value; // ExchangeRatesResponse
+            if (ratesResponse != null && ratesResponse.Rates != null)
+            {
+                foreach (var rate in ratesResponse.Rates)
+                    ExchangeRates.Add(rate);
+            }
         }
         catch (Exception ex)
         {
@@ -62,23 +69,28 @@ public partial class ExchangeRateViewModel : BaseViewModel
 
         try
         {
-            var request = new CreateExchangeRatesRequest
-            {
-                Currency = SelectedCurrency,
-                BuyRate = BuyRate,
-                SellRate = SellRate,
-                Date = SelectedDate
-            };
+            var request = BuildExchangeRateRequest();
 
-            var result = await _exchangeRateService.CreateExchangeRateAsync(request);
-            
+            var result = await _exchangeRateService.CreateDailyRatesAsync(request);
+
             if (result.IsError)
             {
                 SetError(result.FirstError.Description);
                 return;
             }
 
-            ExchangeRates.Insert(0, result.Value);
+            var multi = result.Value;
+            if (multi != null && multi.Rates != null && multi.Rates.Count > 0)
+            {
+                foreach (var rate in multi.Rates)
+                    ExchangeRates.Add(rate);
+            }
+            else
+            {
+                SetError("Unexpected response from service when creating rates.");
+                return;
+            }
+
             ResetForm();
             ShowCreateForm = false;
         }
@@ -115,6 +127,29 @@ public partial class ExchangeRateViewModel : BaseViewModel
         }
 
         return true;
+    }
+
+    private CreateExchangeRatesRequest BuildExchangeRateRequest()
+    {
+        var request = new CreateExchangeRatesRequest { Date = SelectedDate };
+
+        switch (SelectedCurrency)
+        {
+            case Currency.USD:
+                request.UsdBuyRate = BuyRate;
+                request.UsdSellRate = SellRate;
+                break;
+            case Currency.GBP:
+                request.GbpBuyRate = BuyRate;
+                request.GbpSellRate = SellRate;
+                break;
+            case Currency.CHF:
+                request.ChfBuyRate = BuyRate;
+                request.ChfSellRate = SellRate;
+                break;
+        }
+
+        return request;
     }
 
     private void ResetForm()
