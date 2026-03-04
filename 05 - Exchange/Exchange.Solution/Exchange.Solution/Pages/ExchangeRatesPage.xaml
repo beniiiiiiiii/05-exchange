@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Solution.DesktopApp.Pages.ExchangeRatesPage"
+             Title="Exchange Rates"
+             BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+        
+        <!-- Header -->
+        <HorizontalStackLayout Spacing="10" Margin="0,0,0,10">
+            <Label Text="Exchange Rates" 
+                   FontSize="28" 
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"
+                   HorizontalOptions="FillAndExpand"
+                   TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+            <Button Text="🔄" 
+                    Command="{Binding LoadExchangeRatesCommand}"
+                    IsEnabled="{Binding IsNotBusy}"
+                    CornerRadius="20"
+                    Padding="10"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    FontSize="20"/>
+        </HorizontalStackLayout>
+
+        <!-- Loading Indicator -->
+        <ActivityIndicator IsRunning="{Binding IsBusy}"
+                          IsVisible="{Binding IsBusy}"
+                          Scale="1.5"
+                          VerticalOptions="Center"
+                          HorizontalOptions="Center"/>
+
+        <!-- Error Message -->
+        <Frame IsVisible="{Binding HasError}"
+               CornerRadius="10"
+               Padding="15"
+               BorderColor="Red"
+               HasShadow="True"
+               BackgroundColor="{AppThemeBinding Light=#FFE0E0, Dark=#331111}">
+            <Label Text="{Binding ErrorMessage}"
+                   TextColor="Red"
+                   FontSize="12"
+                   LineBreakMode="WordWrap"/>
+        </Frame>
+
+        <!-- Create Form Toggle -->
+        <Button Text="➕ New Exchange Rate"
+                Command="{Binding ToggleCreateFormCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Padding="15,12"
+                FontSize="14"
+                FontAttributes="Bold"/>
+
+        <!-- Create Form -->
+        <Frame IsVisible="{Binding ShowCreateForm}"
+               CornerRadius="15"
+               Padding="20"
+               HasShadow="True"
+               BorderColor="{StaticResource Primary}"
+               BackgroundColor="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource MidnightBlue}}">
+            <ScrollView>
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Create New Exchange Rate"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+
+                    <!-- Currency Picker -->
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Currency"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"/>
+                        <Picker ItemsSource="{Binding CurrencyOptions}"
+                                SelectedItem="{Binding SelectedCurrency}"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
+                                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                    </VerticalStackLayout>
+
+                    <!-- Date Picker -->
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Date"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"/>
+                        <DatePicker Date="{Binding SelectedDate}"
+                                    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
+                                    TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                    </VerticalStackLayout>
+
+                    <!-- Buy Rate -->
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Buy Rate"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"/>
+                        <Entry Placeholder="0.0000"
+                               Text="{Binding BuyRate}"
+                               Keyboard="Numeric"
+                               BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
+                               TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                               PlaceholderColor="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray500}}"/>
+                    </VerticalStackLayout>
+
+                    <!-- Sell Rate -->
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Sell Rate"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"/>
+                        <Entry Placeholder="0.0000"
+                               Text="{Binding SellRate}"
+                               Keyboard="Numeric"
+                               BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
+                               TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                               PlaceholderColor="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray500}}"/>
+                    </VerticalStackLayout>
+
+                    <!-- Action Buttons -->
+                    <HorizontalStackLayout Spacing="10">
+                        <Button Text="✅ Create"
+                                Command="{Binding CreateRateCommand}"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="Green"
+                                FontAttributes="Bold"/>
+                        <Button Text="Cancel"
+                                Command="{Binding ToggleCreateFormCommand}"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}"
+                                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Frame>
+
+        <!-- Exchange Rates List Header -->
+        <Label Text="Rates"
+               FontSize="16"
+               FontAttributes="Bold"
+               Margin="0,10,0,5"
+               TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+               IsVisible="{Binding IsNotBusy}"/>
+
+        <!-- Exchange Rates List -->
+        <CollectionView ItemsSource="{Binding ExchangeRates}"
+                       SelectionMode="None"
+                       IsVisible="{Binding IsNotBusy}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="12" 
+                           Padding="15" 
+                           Margin="0,5"
+                           HasShadow="True"
+                           BorderColor="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray500}}"
+                           BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray950}}">
+                        <VerticalStackLayout Spacing="12">
+                            <!-- Header Row -->
+                            <HorizontalStackLayout Spacing="10">
+                                <Label Text="{Binding Currency, StringFormat='{0}'}"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+                                       HorizontalOptions="Start"/>
+                                <Label Text="{Binding Date, StringFormat='{0:yyyy-MM-dd}'}"
+                                       FontSize="11"
+                                       TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"
+                                       HorizontalOptions="FillAndExpand"
+                                       HorizontalTextAlignment="End"/>
+                            </HorizontalStackLayout>
+
+                            <!-- Rates Grid -->
+                            <Grid ColumnDefinitions="*,*" 
+                                  ColumnSpacing="15">
+                                <!-- Buy Rate -->
+                                <VerticalStackLayout Grid.Column="0" Spacing="5">
+                                    <Label Text="Buy Rate"
+                                           FontSize="11"
+                                           FontAttributes="Bold"
+                                           TextColor="Green"/>
+                                    <Label Text="{Binding BuyRate, StringFormat='{0:N4}'}"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="DarkGreen"/>
+                                </VerticalStackLayout>
+
+                                <!-- Sell Rate -->
+                                <VerticalStackLayout Grid.Column="1" Spacing="5">
+                                    <Label Text="Sell Rate"
+                                           FontSize="11"
+                                           FontAttributes="Bold"
+                                           TextColor="#FF9C27B0"/>
+                                    <Label Text="{Binding SellRate, StringFormat='{0:N4}'}"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="#FF6A1B9A"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

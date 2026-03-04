@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Solution.DesktopApp.Pages.TransactionsPage"
+             Title="Transactions"
+             BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+        
+        <!-- Header -->
+        <HorizontalStackLayout Spacing="10" Margin="0,0,0,10">
+            <Label Text="Transactions" 
+                   FontSize="28" 
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"
+                   HorizontalOptions="FillAndExpand"
+                   TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+            <Button Text="🔄" 
+                    Command="{Binding LoadTransactionsCommand}"
+                    IsEnabled="{Binding IsNotBusy}"
+                    CornerRadius="20"
+                    Padding="10"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    FontSize="20"/>
+        </HorizontalStackLayout>
+
+        <!-- Loading Indicator -->
+        <ActivityIndicator IsRunning="{Binding IsBusy}"
+                          IsVisible="{Binding IsBusy}"
+                          Scale="1.5"
+                          VerticalOptions="Center"
+                          HorizontalOptions="Center"/>
+
+        <!-- Error Message -->
+        <Frame IsVisible="{Binding HasError}"
+               CornerRadius="10"
+               Padding="15"
+               BorderColor="Red"
+               HasShadow="True"
+               BackgroundColor="{AppThemeBinding Light=#FFE0E0, Dark=#331111}">
+            <Label Text="{Binding ErrorMessage}"
+                   TextColor="Red"
+                   FontSize="12"
+                   LineBreakMode="WordWrap"/>
+        </Frame>
+
+        <!-- Create Form Toggle -->
+        <Button Text="➕ New Transaction"
+                Command="{Binding ToggleCreateFormCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Padding="15,12"
+                FontSize="14"
+                FontAttributes="Bold"/>
+
+        <!-- Create Form -->
+        <Frame IsVisible="{Binding ShowCreateForm}"
+               CornerRadius="15"
+               Padding="20"
+               HasShadow="True"
+               BorderColor="{StaticResource Primary}"
+               BackgroundColor="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource MidnightBlue}}">
+            <ScrollView>
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Create New Transaction"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+
+                    <!-- Currency Picker -->
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Currency"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"/>
+                        <Picker ItemsSource="{Binding CurrencyOptions}"
+                                SelectedItem="{Binding SelectedCurrency}"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
+                                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                    </VerticalStackLayout>
+
+                    <!-- Foreign Amount -->
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Foreign Amount"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"/>
+                        <Entry Placeholder="0.00"
+                               Text="{Binding ForeignAmount}"
+                               Keyboard="Numeric"
+                               BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
+                               TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                               PlaceholderColor="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray500}}"/>
+                    </VerticalStackLayout>
+
+                    <!-- Customer Name -->
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Customer Name"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"/>
+                        <Entry Placeholder="Full name"
+                               Text="{Binding CustomerName}"
+                               BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
+                               TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                               PlaceholderColor="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray500}}"/>
+                    </VerticalStackLayout>
+
+                    <!-- ID Type Picker -->
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="ID Type"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"/>
+                        <Picker ItemsSource="{Binding IdTypeOptions}"
+                                SelectedItem="{Binding SelectedIdType}"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
+                                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                    </VerticalStackLayout>
+
+                    <!-- ID Number -->
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="ID Number"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"/>
+                        <Entry Placeholder="ID number"
+                               Text="{Binding CustomerIdNumber}"
+                               BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
+                               TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                               PlaceholderColor="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray500}}"/>
+                    </VerticalStackLayout>
+
+                    <!-- Action Buttons -->
+                    <HorizontalStackLayout Spacing="10">
+                        <Button Text="💰 Buy"
+                                Command="{Binding CreateBuyTransactionCommand}"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="Green"
+                                FontAttributes="Bold"/>
+                        <Button Text="💱 Sell"
+                                Command="{Binding CreateSellTransactionCommand}"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="#FF9C27B0"
+                                FontAttributes="Bold"/>
+                    </HorizontalStackLayout>
+
+                    <Button Text="Cancel"
+                            Command="{Binding ToggleCreateFormCommand}"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}"
+                            TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Frame>
+
+        <!-- Transactions List Header -->
+        <Label Text="Recent Transactions"
+               FontSize="16"
+               FontAttributes="Bold"
+               Margin="0,10,0,5"
+               TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+               IsVisible="{Binding IsNotBusy}"/>
+
+        <!-- Transactions List -->
+        <CollectionView ItemsSource="{Binding Transactions}"
+                       SelectionMode="None"
+                       IsVisible="{Binding IsNotBusy}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="12" 
+                           Padding="15" 
+                           Margin="0,5"
+                           HasShadow="True"
+                           BorderColor="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray500}}"
+                           BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray950}}">
+                        <VerticalStackLayout Spacing="10">
+                            <!-- Header Row -->
+                            <HorizontalStackLayout Spacing="10">
+                                <Label Text="{Binding Type, StringFormat='{0}'}"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+                                       HorizontalOptions="Start"/>
+                                <Label Text="{Binding Currency, StringFormat='{0}'}"
+                                       FontSize="12"
+                                       FontAttributes="Bold"
+                                       TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"
+                                       HorizontalOptions="FillAndExpand"/>
+                                <Label Text="{Binding TransactionDate, StringFormat='{0:g}'}"
+                                       FontSize="11"
+                                       TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"
+                                       HorizontalOptions="End"/>
+                            </HorizontalStackLayout>
+
+                            <!-- Details Grid -->
+                            <Grid ColumnDefinitions="*,*" 
+                                  RowDefinitions="Auto,Auto"
+                                  ColumnSpacing="15"
+                                  RowSpacing="8">
+                                <!-- Customer Name -->
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="2">
+                                    <Label Text="Customer" 
+                                           FontSize="10" 
+                                           FontAttributes="Bold"
+                                           TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"/>
+                                    <Label Text="{Binding CustomerName}"
+                                           FontSize="12"
+                                           TextColor="{AppThemeBinding Light={StaticResource Gray700}, Dark={StaticResource Gray200}}"/>
+                                </VerticalStackLayout>
+
+                                <!-- Foreign Amount -->
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="1" Spacing="2">
+                                    <Label Text="Foreign Amount" 
+                                           FontSize="10" 
+                                           FontAttributes="Bold"
+                                           TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"/>
+                                    <Label Text="{Binding ForeignAmount, StringFormat='{0:N2}'}"
+                                           FontSize="12"
+                                           TextColor="{AppThemeBinding Light={StaticResource Gray700}, Dark={StaticResource Gray200}}"/>
+                                </VerticalStackLayout>
+
+                                <!-- HUF Amount -->
+                                <VerticalStackLayout Grid.Row="1" Grid.Column="0" Spacing="2">
+                                    <Label Text="HUF Amount" 
+                                           FontSize="10" 
+                                           FontAttributes="Bold"
+                                           TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"/>
+                                    <Label Text="{Binding HufAmount, StringFormat='{0:N2}'}"
+                                           FontSize="12"
+                                           FontAttributes="Bold"
+                                           TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+                                </VerticalStackLayout>
+
+                                <!-- Applied Rate -->
+                                <VerticalStackLayout Grid.Row="1" Grid.Column="1" Spacing="2">
+                                    <Label Text="Applied Rate" 
+                                           FontSize="10" 
+                                           FontAttributes="Bold"
+                                           TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"/>
+                                    <Label Text="{Binding AppliedRate, StringFormat='{0:N4}'}"
+                                           FontSize="12"
+                                           TextColor="{AppThemeBinding Light={StaticResource Gray700}, Dark={StaticResource Gray200}}"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

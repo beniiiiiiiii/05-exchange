@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Solution.DesktopApp.Pages.DashboardPage"
+             Title="Dashboard"
+             BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+        
+        <!-- Header -->
+        <HorizontalStackLayout Spacing="10" Margin="0,0,0,10">
+            <Label Text="Dashboard" 
+                   FontSize="28" 
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"
+                   HorizontalOptions="FillAndExpand"
+                   TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+            <Button Text="🔄" 
+                    Command="{Binding RefreshCommand}"
+                    IsEnabled="{Binding IsNotBusy}"
+                    CornerRadius="20"
+                    Padding="10"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    FontSize="20"/>
+        </HorizontalStackLayout>
+
+        <!-- Loading Indicator -->
+        <ActivityIndicator IsRunning="{Binding IsBusy}"
+                          IsVisible="{Binding IsBusy}"
+                          Scale="1.5"
+                          VerticalOptions="Center"
+                          HorizontalOptions="Center"/>
+
+        <!-- Error Message -->
+        <Frame IsVisible="{Binding HasError}"
+               CornerRadius="10"
+               Padding="15"
+               BorderColor="Red"
+               HasShadow="True"
+               BackgroundColor="{AppThemeBinding Light=#FFE0E0, Dark=#331111}">
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Error" 
+                       FontAttributes="Bold" 
+                       FontSize="14"
+                       TextColor="Red"/>
+                <Label Text="{Binding ErrorMessage}"
+                       TextColor="Red"
+                       FontSize="12"
+                       LineBreakMode="WordWrap"/>
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- Summary Cards -->
+        <ScrollView IsVisible="{Binding IsNotBusy}">
+            <VerticalStackLayout Spacing="15">
+                <!-- Total Transactions Card -->
+                <Frame CornerRadius="15" 
+                       Padding="20" 
+                       HasShadow="True"
+                       BorderColor="{StaticResource Primary}"
+                       BackgroundColor="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource MidnightBlue}}">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Today's Transactions"
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray300}}"/>
+                        <Label Text="{Binding TotalTransactionsToday, StringFormat='{0}'}"
+                               FontSize="36"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Total Volume Card -->
+                <Frame CornerRadius="15" 
+                       Padding="20" 
+                       HasShadow="True"
+                       BorderColor="{StaticResource Tertiary}"
+                       BackgroundColor="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource MidnightBlue}}">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Total HUF Volume"
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray300}}"/>
+                        <Label Text="{Binding TotalHufVolumeToday, StringFormat='{0:N2} HUF'}"
+                               FontSize="32"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Magenta}}"
+                               LineBreakMode="TailTruncation"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Currency Summary Header -->
+                <Label Text="Currency Breakdown" 
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       Margin="0,15,0,5"
+                       TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+
+                <!-- Currency Summary List -->
+                <CollectionView ItemsSource="{Binding CurrencySummaries}"
+                               SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame CornerRadius="12" 
+                                   Padding="15" 
+                                   Margin="0,5"
+                                   HasShadow="True"
+                                   BorderColor="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray500}}"
+                                   BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray950}}">
+                                <VerticalStackLayout Spacing="12">
+                                    <!-- Currency Header -->
+                                    <Label Text="{Binding Currency, StringFormat='{0}'}"
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+
+                                    <!-- Stats Grid -->
+                                    <Grid ColumnDefinitions="*,*" 
+                                          RowDefinitions="Auto,Auto"
+                                          ColumnSpacing="15"
+                                          RowSpacing="10">
+                                        <!-- Buy Count -->
+                                        <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="3">
+                                            <Label Text="Buy Count" 
+                                                   FontSize="11" 
+                                                   FontAttributes="Bold"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"/>
+                                            <Label Text="{Binding TotalBuyCount, StringFormat='{0}'}"
+                                                   FontSize="14"
+                                                   FontAttributes="Bold"
+                                                   TextColor="Green"/>
+                                        </VerticalStackLayout>
+
+                                        <!-- Sell Count -->
+                                        <VerticalStackLayout Grid.Row="0" Grid.Column="1" Spacing="3">
+                                            <Label Text="Sell Count" 
+                                                   FontSize="11" 
+                                                   FontAttributes="Bold"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"/>
+                                            <Label Text="{Binding TotalSellCount, StringFormat='{0}'}"
+                                                   FontSize="14"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#FF9C27B0"/>
+                                        </VerticalStackLayout>
+
+                                        <!-- Buy HUF -->
+                                        <VerticalStackLayout Grid.Row="1" Grid.Column="0" Spacing="3">
+                                            <Label Text="Buy HUF" 
+                                                   FontSize="11" 
+                                                   FontAttributes="Bold"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"/>
+                                            <Label Text="{Binding TotalBuyHufAmount, StringFormat='{0:N0}'}"
+                                                   FontSize="12"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"/>
+                                        </VerticalStackLayout>
+
+                                        <!-- Sell HUF -->
+                                        <VerticalStackLayout Grid.Row="1" Grid.Column="1" Spacing="3">
+                                            <Label Text="Sell HUF" 
+                                                   FontSize="11" 
+                                                   FontAttributes="Bold"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"/>
+                                            <Label Text="{Binding TotalSellHufAmount, StringFormat='{0:N0}'}"
+                                                   FontSize="12"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"/>
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="Exchange.Solution.AppShell"
+    x:Class="Solution.DesktopApp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Exchange.Solution"
-    Title="Exchange.Solution">
+    xmlns:local="clr-namespace:Solution.DesktopApp.Pages"
+    Title="Exchange Management">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <!-- Tab Bar with 3 pages -->
+    <TabBar>
+        <!-- Dashboard Tab -->
+        <ShellContent 
+            Title="Dashboard" 
+            Icon="chart_icon.png"
+            ContentTemplate="{DataTemplate local:DashboardPage}"
+            Route="dashboard" />
+
+        <!-- Transactions Tab -->
+        <ShellContent 
+            Title="Transactions" 
+            Icon="transaction_icon.png"
+            ContentTemplate="{DataTemplate local:TransactionsPage}"
+            Route="transactions" />
+
+        <!-- Exchange Rates Tab -->
+        <ShellContent 
+            Title="Rates" 
+            Icon="rates_icon.png"
+            ContentTemplate="{DataTemplate local:ExchangeRatesPage}"
+            Route="exchangerates" />
+    </TabBar>
 
 </Shell>
