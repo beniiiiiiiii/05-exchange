@@ -40,11 +40,15 @@ public partial class ExchangeRateViewModel : BaseViewModel
 
             ExchangeRates.Clear();
 
-            var ratesResponse = result.Value; // ExchangeRatesResponse
-            if (ratesResponse != null && ratesResponse.Rates != null)
+            var responses = result.Value; 
+            if (responses != null)
             {
-                foreach (var rate in ratesResponse.Rates)
-                    ExchangeRates.Add(rate);
+                foreach (var ratesResponse in responses)
+                {
+                    if (ratesResponse?.Rates == null) continue;
+                    foreach (var rate in ratesResponse.Rates)
+                        ExchangeRates.Add(rate);
+                }
             }
         }
         catch (Exception ex)

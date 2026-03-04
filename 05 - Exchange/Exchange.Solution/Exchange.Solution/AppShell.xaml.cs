@@ -1,10 +1,17 @@
-﻿namespace Exchange.Solution
+﻿namespace Solution.DesktopApp;
+
+public partial class AppShell : Shell
 {
-    public partial class AppShell : Shell
+    public AppShell()
     {
-        public AppShell()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+        RegisterRoutes();
+    }
+
+    private static void RegisterRoutes()
+    {
+        Routing.RegisterRoute("dashboard", typeof(DashboardPage));
+        Routing.RegisterRoute("transactions", typeof(TransactionsPage));
+        Routing.RegisterRoute("exchangerates", typeof(ExchangeRatesPage));
     }
 }

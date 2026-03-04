@@ -6,23 +6,19 @@
     xmlns:local="clr-namespace:Solution.DesktopApp.Pages"
     Title="Exchange Management">
 
-    <!-- Tab Bar with 3 pages -->
     <TabBar>
-        <!-- Dashboard Tab -->
         <ShellContent 
             Title="Dashboard" 
             Icon="chart_icon.png"
             ContentTemplate="{DataTemplate local:DashboardPage}"
             Route="dashboard" />
 
-        <!-- Transactions Tab -->
         <ShellContent 
             Title="Transactions" 
             Icon="transaction_icon.png"
             ContentTemplate="{DataTemplate local:TransactionsPage}"
             Route="transactions" />
 
-        <!-- Exchange Rates Tab -->
         <ShellContent 
             Title="Rates" 
             Icon="rates_icon.png"
