@@ -57,6 +57,34 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Components\**" />
+	  <Compile Remove="Configurations\**" />
+	  <Compile Remove="Converters\**" />
+	  <Compile Remove="Extensions\**" />
+	  <Compile Remove="Views\**" />
+	  <EmbeddedResource Remove="Components\**" />
+	  <EmbeddedResource Remove="Configurations\**" />
+	  <EmbeddedResource Remove="Converters\**" />
+	  <EmbeddedResource Remove="Extensions\**" />
+	  <EmbeddedResource Remove="Views\**" />
+	  <MauiCss Remove="Components\**" />
+	  <MauiCss Remove="Configurations\**" />
+	  <MauiCss Remove="Converters\**" />
+	  <MauiCss Remove="Extensions\**" />
+	  <MauiCss Remove="Views\**" />
+	  <MauiXaml Remove="Components\**" />
+	  <MauiXaml Remove="Configurations\**" />
+	  <MauiXaml Remove="Converters\**" />
+	  <MauiXaml Remove="Extensions\**" />
+	  <MauiXaml Remove="Views\**" />
+	  <None Remove="Components\**" />
+	  <None Remove="Configurations\**" />
+	  <None Remove="Converters\**" />
+	  <None Remove="Extensions\**" />
+	  <None Remove="Views\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="ErrorOr" Version="2.0.1" />
 		<PackageReference Include="FluentValidation" Version="12.1.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.3" />
@@ -77,11 +105,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Configurations\" />
-	  <Folder Include="Converters\" />
-	  <Folder Include="Extensions\" />
-	  <Folder Include="Components\" />
-	  <Folder Include="Views\" />
 	  <Folder Include="ViewModels\" />
 	</ItemGroup>
 
@@ -95,6 +118,26 @@
 	  <MauiXaml Update="Pages\TransactionsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PRIResource Remove="Configurations\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PRIResource Remove="Components\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PRIResource Remove="Converters\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PRIResource Remove="Extensions\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PRIResource Remove="Views\**" />
 	</ItemGroup>
 
 </Project>
