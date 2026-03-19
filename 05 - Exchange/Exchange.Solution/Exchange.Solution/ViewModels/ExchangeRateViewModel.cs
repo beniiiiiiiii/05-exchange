@@ -100,7 +100,7 @@ public partial class ExchangeRateViewModel : BaseViewModel
         }
         catch (Exception ex)
         {
-            SetError($"Error creating rate: {ex.Message}");
+            SetError($"Error creating rate: {ex.Message}\nInner Exception: {ex.InnerException}");
         }
         finally
         {

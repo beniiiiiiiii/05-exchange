@@ -77,9 +77,9 @@ public class ExchangeRateService : IExchangeRateService
 
         var rates = new List<ExchangeRateEntity>
         {
-            new() { Currency = Currency.USD, Date = request.Date, BuyRate = request.UsdBuyRate, SellRate = request.UsdSellRate, CreatedAt = now, CreatedByUserId = userId },
-            new() { Currency = Currency.GBP, Date = request.Date, BuyRate = request.GbpBuyRate, SellRate = request.GbpSellRate, CreatedAt = now, CreatedByUserId = userId },
-            new() { Currency = Currency.CHF, Date = request.Date, BuyRate = request.ChfBuyRate, SellRate = request.ChfSellRate, CreatedAt = now, CreatedByUserId = userId }
+            new() { Currency = Currency.USD, Date = request.Date, BuyRate = request.UsdBuyRate, SellRate = request.UsdSellRate, CreatedAt = now},
+            new() { Currency = Currency.GBP, Date = request.Date, BuyRate = request.GbpBuyRate, SellRate = request.GbpSellRate, CreatedAt = now},
+            new() { Currency = Currency.CHF, Date = request.Date, BuyRate = request.ChfBuyRate, SellRate = request.ChfSellRate, CreatedAt = now}
         };
 
         await dbContext.ExchangeRates.AddRangeAsync(rates);
@@ -106,7 +106,6 @@ public class ExchangeRateService : IExchangeRateService
         rate.BuyRate = request.BuyRate;
         rate.SellRate = request.SellRate;
         rate.ModifiedAt = DateTime.UtcNow;
-        rate.ModifiedByUserId = userId;
 
         await dbContext.SaveChangesAsync();
 

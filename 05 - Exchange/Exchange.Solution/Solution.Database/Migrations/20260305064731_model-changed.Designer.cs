@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Solution.Database;
 
@@ -11,9 +12,11 @@ using Solution.Database;
 namespace Solution.Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260305064731_model-changed")]
+    partial class modelchanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -238,6 +241,9 @@ namespace Solution.Database.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<Guid>("ProcessedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("TransactionDate")
                         .HasColumnType("datetime2");
 
@@ -248,6 +254,8 @@ namespace Solution.Database.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ExchangeRateId");
+
+                    b.HasIndex("ProcessedByUserId");
 
                     b.ToTable("Transaction", (string)null);
                 });
@@ -393,7 +401,15 @@ namespace Solution.Database.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Solution.Database.Entities.UserEntity", "ProcessedByUser")
+                        .WithMany()
+                        .HasForeignKey("ProcessedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("ExchangeRate");
+
+                    b.Navigation("ProcessedByUser");
                 });
 
             modelBuilder.Entity("Solution.Database.Entities.ExchangeRateEntity", b =>

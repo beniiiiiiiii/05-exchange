@@ -22,16 +22,6 @@ public sealed class ApplicationDbContext : IdentityDbContext<UserEntity, Identit
             b.Property(e => e.BuyRate).HasPrecision(18, 4);
             b.Property(e => e.SellRate).HasPrecision(18, 4);
             b.Property(e => e.Currency).HasConversion<string>();
-
-            b.HasOne(e => e.CreatedByUser)
-             .WithMany()
-             .HasForeignKey(e => e.CreatedByUserId)
-             .OnDelete(DeleteBehavior.Restrict);
-
-            b.HasOne(e => e.ModifiedByUser)
-             .WithMany()
-             .HasForeignKey(e => e.ModifiedByUserId)
-             .OnDelete(DeleteBehavior.Restrict);
         });
 
         builder.Entity<TransactionEntity>(b =>
@@ -43,11 +33,6 @@ public sealed class ApplicationDbContext : IdentityDbContext<UserEntity, Identit
             b.Property(e => e.Type).HasConversion<string>();
             b.Property(e => e.Currency).HasConversion<string>();
             b.Property(e => e.CustomerIdType).HasConversion<string>();
-
-            b.HasOne(e => e.ProcessedByUser)
-             .WithMany()
-             .HasForeignKey(e => e.ProcessedByUserId)
-             .OnDelete(DeleteBehavior.Restrict);
 
             b.HasOne(e => e.ExchangeRate)
              .WithMany(e => e.Transactions)

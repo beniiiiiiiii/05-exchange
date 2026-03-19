@@ -58,7 +58,6 @@
                 CustomerIdType = request.CustomerIdType,
                 CustomerIdNumber = request.CustomerIdNumber,
                 TransactionDate = DateTime.UtcNow,
-                ProcessedByUserId = userId,
                 ExchangeRateId = exchangeRate.Id
             };
 
@@ -75,7 +74,6 @@
         DateOnly? date, Currency? currency, TransactionType? type)
         {
             var query = dbContext.Transactions
-                .Include(t => t.ProcessedByUser)
                 .AsQueryable();
 
             if (date.HasValue)
@@ -105,7 +103,6 @@
         public async Task<ErrorOr<TransactionResponse>> GetTransactionByIdAsync(int id)
         {
             var transaction = await dbContext.Transactions
-                .Include(t => t.ProcessedByUser)
                 .FirstOrDefaultAsync(t => t.Id == id);
 
             if (transaction is null)
@@ -133,7 +130,6 @@
                 CustomerIdType = entity.CustomerIdType.ToString(),
                 CustomerIdNumber = entity.CustomerIdNumber,
                 TransactionDate = entity.TransactionDate,
-                ProcessedBy = entity.ProcessedByUser?.FullName ?? "Unknown"
             };
         }
     }

@@ -24,13 +24,6 @@ public class ExchangeRateEntity
     public DateTime CreatedAt { get; set; }
 
     public DateTime? ModifiedAt { get; set; }
-
-    [Required]
-    public Guid CreatedByUserId { get; set; }
-    public Guid? ModifiedByUserId { get; set; }
-
-    public virtual UserEntity CreatedByUser { get; set; }
-    public virtual UserEntity? ModifiedByUser { get; set; }
     public virtual ICollection<TransactionEntity> Transactions { get; set; }
 
 }

@@ -35,7 +35,7 @@ public class SecurityService(UserManager<UserEntity> userManager, IOptions<JWTSe
 
         if (result.Succeeded)
         {
-            await userManager.AddToRoleAsync(user, "Administrator");
+            await userManager.AddToRoleAsync(user, "Admin");
         }
 
         var errors = result.Errors.Select(x => x.Description);
